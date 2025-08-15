@@ -1,0 +1,109 @@
+﻿USE DBTRANSPORTE
+GO
+
+/* ===== ROLES Y PERMISOS ===== */
+CREATE TABLE ROL(
+    IdRol INT PRIMARY KEY IDENTITY,
+    Descripcion VARCHAR(50),
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE PERMISO(
+    IdPermiso INT PRIMARY KEY IDENTITY,
+    IdRol INT REFERENCES ROL(IdRol),
+    NombreMenu VARCHAR(100),
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE USUARIO(
+    IdUsuario INT PRIMARY KEY IDENTITY,
+    Documento VARCHAR(50),
+    NombreCompleto VARCHAR(100),
+    Correo VARCHAR(100),
+    Clave VARCHAR(100),
+    IdRol INT REFERENCES ROL(IdRol),
+    Estado BIT,
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+/* ===== CLIENTES ===== */
+CREATE TABLE CLIENTE(
+    IdCliente INT PRIMARY KEY IDENTITY,
+    NombreCliente VARCHAR(100) NOT NULL,
+    Direccion VARCHAR(200) NOT NULL,
+    Estado BIT DEFAULT 1,
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+/* ===== MOTORISTAS ===== */
+CREATE TABLE MOTORISTA(
+    IdMotorista INT PRIMARY KEY IDENTITY,
+    NombreMotorista VARCHAR(100) NOT NULL,
+    Direccion VARCHAR(200) NOT NULL,
+    Correo VARCHAR(100),
+    Telefono VARCHAR(20),
+    PerfilSocial VARCHAR(200),
+    Curriculum VARBINARY(MAX) NULL,
+    Estado BIT DEFAULT 1,
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+/* ===== UNIDADES DE TRANSPORTE ===== */
+CREATE TABLE UNIDAD_TRANSPORTE(
+    IdUnidad INT PRIMARY KEY IDENTITY,
+    Placa VARCHAR(20) NOT NULL,
+    Marca VARCHAR(50),
+    CapacidadToneladas DECIMAL(10,2),
+    AnioFabricacion INT,
+    Estado BIT DEFAULT 1,
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+/* ===== ESTADOS DE FLETE ===== */
+CREATE TABLE ESTADO_FLETE(
+    IdEstado INT PRIMARY KEY IDENTITY,
+    Descripcion VARCHAR(50) NOT NULL
+);
+INSERT INTO ESTADO_FLETE(Descripcion) VALUES
+('Programado'),('En Proceso'),('Terminado'),('Con Devolución'),('Con Queja');
+
+/* ===== FLETES ===== */
+CREATE TABLE FLETE(
+    IdFlete INT PRIMARY KEY IDENTITY,
+    IdCliente INT REFERENCES CLIENTE(IdCliente),
+    IdUnidad INT REFERENCES UNIDAD_TRANSPORTE(IdUnidad),
+    IdMotorista INT REFERENCES MOTORISTA(IdMotorista),
+    MontoCobro DECIMAL(10,2) NOT NULL,
+    LugarRecolecta VARCHAR(200) NOT NULL,
+    LugarEntrega VARCHAR(200) NOT NULL,
+    HoraSalida DATETIME NOT NULL,
+    HoraDestino DATETIME NOT NULL,
+    Consideraciones VARCHAR(500),
+    IdEstado INT REFERENCES ESTADO_FLETE(IdEstado),
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+/* ===== GASTOS POR FLETE ===== */
+CREATE TABLE GASTO_FLETE(
+    IdGasto INT PRIMARY KEY IDENTITY,
+    IdFlete INT REFERENCES FLETE(IdFlete),
+    TipoGasto VARCHAR(50), -- Camión, Varios, Producción
+    Concepto VARCHAR(100),
+    Monto DECIMAL(10,2),
+    FechaRegistro DATETIME DEFAULT GETDATE()
+);
+
+/* ===== VISTA DE UTILIDAD ===== */
+CREATE VIEW VW_UTILIDAD_FLETE AS
+SELECT 
+    f.IdFlete,
+    f.MontoCobro AS ValorFlete,
+    ISNULL(SUM(g.Monto),0) AS TotalGastos,
+    (f.MontoCobro - ISNULL(SUM(g.Monto),0)) AS IngresosNetos,
+    CASE 
+        WHEN f.MontoCobro > 0 THEN ((f.MontoCobro - ISNULL(SUM(g.Monto),0)) / f.MontoCobro) * 100
+        ELSE 0
+    END AS PorcentajeRentabilidad
+FROM FLETE f
+LEFT JOIN GASTO_FLETE g ON g.IdFlete = f.IdFlete
+GROUP BY f.IdFlete, f.MontoCobro;
