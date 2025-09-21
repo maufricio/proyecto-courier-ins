@@ -241,5 +241,10 @@ namespace CapaPresentacion
         {
             Limpiar();
         }
+
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

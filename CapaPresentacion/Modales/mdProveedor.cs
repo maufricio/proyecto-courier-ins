@@ -91,5 +91,10 @@ namespace CapaPresentacion.Modales
                 row.Visible = true;
             }
         }
+
+        private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

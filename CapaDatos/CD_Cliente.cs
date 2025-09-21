@@ -23,7 +23,7 @@ namespace CapaDatos
                 {
 
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdCliente,Documento,NombreCompleto,Correo,Telefono,Estado from CLIENTE");
+                    query.AppendLine("SELECT * FROM CLIENTE");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
                     cmd.CommandType = CommandType.Text;
                     oconexion.Open();
@@ -34,11 +34,10 @@ namespace CapaDatos
                             lista.Add(new Cliente()
                             {
                                 IdCliente = Convert.ToInt32(dr["IdCliente"]),
-                                Documento = dr["Documento"].ToString(),
-                                NombreCompleto = dr["NombreCompleto"].ToString(),
-                                Correo = dr["Correo"].ToString(),
-                                Telefono = dr["Telefono"].ToString(),
-                                Estado = Convert.ToBoolean(dr["Estado"]),
+                                NombreCliente = dr["NombreCliente"].ToString(),
+                                Direccion = dr["Direccion"].ToString(),
+                                Estado = dr["Estado"].ToString(),
+                                FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString())
                             });
 
                         }
@@ -51,8 +50,9 @@ namespace CapaDatos
                 {
 
                     lista = new List<Cliente>();
+                    Console.WriteLine(ex.Message.ToString());
                 }
-            }
+            } // Automaticamente cierra las conexiones con la base de datos para evitar fugas de memoria
 
             return lista;
 
