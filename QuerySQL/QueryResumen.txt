@@ -92,3 +92,27 @@ CREATE TABLE GASTO_FLETE(
     Monto DECIMAL(10,2),
     FechaRegistro DATETIME DEFAULT GETDATE()
 );
+
+
+********** PROCEDURE PARA CALCULAR UTILIDAD DE FLETE **********
+
+CREATE OR ALTER PROCEDURE sp_CalcularUtilidadFlete
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        f.IdFlete,
+        f.MontoCobro AS ValorFlete,
+        ISNULL(SUM(g.Monto), 0) AS TotalGastos,
+        (f.MontoCobro - ISNULL(SUM(g.Monto), 0)) AS UtilidadNeta,
+        CASE 
+            WHEN f.MontoCobro > 0 
+            THEN ((f.MontoCobro - ISNULL(SUM(g.Monto), 0)) / f.MontoCobro) * 100
+            ELSE 0
+        END AS PorcentajeUtilidad
+    FROM FLETE f
+    LEFT JOIN GASTO_FLETE g ON f.IdFlete = g.IdFlete
+    GROUP BY f.IdFlete, f.MontoCobro;
+END;
+GO
