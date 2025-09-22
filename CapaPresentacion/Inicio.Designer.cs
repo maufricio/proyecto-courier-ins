@@ -35,7 +35,7 @@
             this.menuclientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuproveedores = new FontAwesome.Sharp.IconMenuItem();
             this.menuventas = new FontAwesome.Sharp.IconMenuItem();
-            this.submenuregistrarventa = new FontAwesome.Sharp.IconMenuItem();
+            this.submenuregistrartransporte = new FontAwesome.Sharp.IconMenuItem();
             this.submenuverdetalleventa = new FontAwesome.Sharp.IconMenuItem();
             this.menureportes = new FontAwesome.Sharp.IconMenuItem();
             this.submenureportecompras = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,7 +143,7 @@
             // 
             this.menuventas.AutoSize = false;
             this.menuventas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenuregistrarventa,
+            this.submenuregistrartransporte,
             this.submenuverdetalleventa});
             this.menuventas.IconChar = FontAwesome.Sharp.IconChar.TruckRampBox;
             this.menuventas.IconColor = System.Drawing.Color.Black;
@@ -155,15 +155,15 @@
             this.menuventas.Text = "Transporte de Carga";
             this.menuventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // submenuregistrarventa
+            // submenuregistrartransporte
             // 
-            this.submenuregistrarventa.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenuregistrarventa.IconColor = System.Drawing.Color.Black;
-            this.submenuregistrarventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.submenuregistrarventa.Name = "submenuregistrarventa";
-            this.submenuregistrarventa.Size = new System.Drawing.Size(180, 22);
-            this.submenuregistrarventa.Text = "Registrar";
-            this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
+            this.submenuregistrartransporte.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.submenuregistrartransporte.IconColor = System.Drawing.Color.Black;
+            this.submenuregistrartransporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.submenuregistrartransporte.Name = "submenuregistrartransporte";
+            this.submenuregistrartransporte.Size = new System.Drawing.Size(180, 22);
+            this.submenuregistrartransporte.Text = "Registrar";
+            this.submenuregistrartransporte.Click += new System.EventHandler(this.submenuregistrartransporte_Click);
             // 
             // submenuverdetalleventa
             // 
@@ -403,7 +403,7 @@
         private System.Windows.Forms.Label lblusuario;
         private FontAwesome.Sharp.IconMenuItem submenucategoria;
         private FontAwesome.Sharp.IconMenuItem submenuproducto;
-        private FontAwesome.Sharp.IconMenuItem submenuregistrarventa;
+        private FontAwesome.Sharp.IconMenuItem submenuregistrartransporte;
         private FontAwesome.Sharp.IconMenuItem submenuverdetalleventa;
         private FontAwesome.Sharp.IconMenuItem submenuregistrarcompra;
         private FontAwesome.Sharp.IconMenuItem submenutverdetallecompra;

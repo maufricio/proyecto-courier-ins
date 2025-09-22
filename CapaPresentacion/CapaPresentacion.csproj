@@ -153,11 +153,11 @@
     <Compile Include="frmUsuarios.Designer.cs">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVentas.cs">
+    <Compile Include="frmUnidadTransporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVentas.Designer.cs">
-      <DependentUpon>frmVentas.cs</DependentUpon>
+    <Compile Include="frmUnidadTransporte.Designer.cs">
+      <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
@@ -234,8 +234,8 @@
     <EmbeddedResource Include="frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVentas.resx">
-      <DependentUpon>frmVentas.cs</DependentUpon>
+    <EmbeddedResource Include="frmUnidadTransporte.resx">
+      <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
