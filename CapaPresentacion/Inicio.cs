@@ -36,17 +36,8 @@ namespace CapaPresentacion
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            List<Permiso> ListaPermisos = new CN_Permiso().Listar(usuarioActual.IdUsuario);
-
-            foreach (IconMenuItem iconmenu in menu.Items) {
-
-                bool encontrado = ListaPermisos.Any(m => m.NombreMenu == iconmenu.Name);
-
-                if (encontrado == false) {
-                    iconmenu.Visible = false;
-                }
-
-            }
+            
+            
 
 
 
@@ -106,7 +97,7 @@ namespace CapaPresentacion
 
         private void submenuregistrarcompra_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(menucompras, new frmCompras(usuarioActual));
+            AbrirFormulario(menucompras, new frmFlete());
         }
 
         private void submenutverdetallecompra_Click(object sender, EventArgs e)
@@ -152,6 +143,11 @@ namespace CapaPresentacion
             if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { 
                 this.Close();
             }
+        }
+
+        private void contenedor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

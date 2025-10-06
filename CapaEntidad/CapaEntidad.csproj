@@ -44,9 +44,13 @@
   <ItemGroup>
     <Compile Include="Categoria.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Cliente1.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="Detalle_Compra.cs" />
     <Compile Include="Detalle_Venta.cs" />
+    <Compile Include="Estado.cs" />
+    <Compile Include="Flete.cs" />
+    <Compile Include="Motorista.cs" />
     <Compile Include="Negocio.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Producto.cs" />
@@ -55,6 +59,7 @@
     <Compile Include="ReporteCompra.cs" />
     <Compile Include="ReporteVenta.cs" />
     <Compile Include="Rol.cs" />
+    <Compile Include="Transporte.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Venta.cs" />
   </ItemGroup>
