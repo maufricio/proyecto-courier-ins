@@ -1,49 +1,17 @@
-﻿using CapaEntidad;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
+
+using CapaEntidad;
 
 namespace CapaDatos
 {
     public class CD_UnidadTransporte
     {
-        // Registrar nueva unidad de transporte
-        public bool Registrar(UnidadTransporte obj, out string Mensaje)
-        {
-            bool Respuesta = false;
-            Mensaje = string.Empty;
-
-            try
-            {
-                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
-                {
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("INSERT INTO UNIDAD_TRANSPORTE (Placa, Marca, CapacidadToneladas, AnioFabricacion, Estado)");
-                    query.AppendLine("VALUES (@Placa, @Marca, @CapacidadToneladas, @AnioFabricacion, @Estado);");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
-                    cmd.Parameters.AddWithValue("@Placa", obj.Placa);
-                    cmd.Parameters.AddWithValue("@Marca", obj.Marca ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@CapacidadToneladas", obj.CapacidadToneladas);
-                    cmd.Parameters.AddWithValue("@AnioFabricacion", obj.AnioFabricacion);
-                    cmd.Parameters.AddWithValue("@Estado", obj.Estado);
-
-                    oconexion.Open();
-                    Respuesta = cmd.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-                Mensaje = ex.Message;
-            }
-
-            return Respuesta;
-        }
-
-        // Listar todas las unidades de transporte
         public List<UnidadTransporte> Listar()
         {
             List<UnidadTransporte> lista = new List<UnidadTransporte>();
@@ -55,8 +23,10 @@ namespace CapaDatos
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT IdUnidad, Placa, Marca, CapacidadToneladas, AnioFabricacion, Estado, FechaRegistro");
                     query.AppendLine("FROM UNIDAD_TRANSPORTE");
+                    query.AppendLine("ORDER BY FechaRegistro DESC");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
+                    cmd.CommandType = CommandType.Text;
                     oconexion.Open();
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
@@ -76,81 +46,107 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     lista = new List<UnidadTransporte>();
+                    Console.WriteLine(ex.Message.ToString());
                 }
             }
 
             return lista;
         }
 
-        // Buscar una unidad por placa
-        public UnidadTransporte ObtenerPorPlaca(string placa)
+        public int Registrar(UnidadTransporte obj, out string Mensaje)
         {
-            UnidadTransporte obj = null;
+            int idUnidadGenerado = 0;
+            Mensaje = string.Empty;
 
-            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            try
             {
-                try
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT TOP 1 IdUnidad, Placa, Marca, CapacidadToneladas, AnioFabricacion, Estado, FechaRegistro");
-                    query.AppendLine("FROM UNIDAD_TRANSPORTE WHERE Placa = @placa");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
-                    cmd.Parameters.AddWithValue("@placa", placa);
+                    SqlCommand cmd = new SqlCommand("sp_RegistrarUnidadTransporte", oconexion);
+                    cmd.Parameters.AddWithValue("Placa", obj.Placa);
+                    cmd.Parameters.AddWithValue("Marca", obj.Marca);
+                    cmd.Parameters.AddWithValue("CapacidadToneladas", obj.CapacidadToneladas);
+                    cmd.Parameters.AddWithValue("AnioFabricacion", obj.AnioFabricacion);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.Read())
-                        {
-                            obj = new UnidadTransporte()
-                            {
-                                IdUnidad = Convert.ToInt32(dr["IdUnidad"]),
-                                Placa = dr["Placa"].ToString(),
-                                Marca = dr["Marca"].ToString(),
-                                CapacidadToneladas = Convert.ToDecimal(dr["CapacidadToneladas"]),
-                                AnioFabricacion = Convert.ToInt32(dr["AnioFabricacion"]),
-                                Estado = Convert.ToBoolean(dr["Estado"]),
-                                FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"])
-                            };
-                        }
-                    }
-                }
-                catch
-                {
-                    obj = null;
+                    cmd.ExecuteNonQuery();
+
+                    idUnidadGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
+            catch (Exception ex)
+            {
+                idUnidadGenerado = 0;
+                Mensaje = ex.Message;
+            }
 
-            return obj;
+            return idUnidadGenerado;
         }
 
-        // Actualizar estado de una unidad
-        public bool CambiarEstado(int idUnidad, bool estado)
+        public bool Editar(UnidadTransporte obj, out string Mensaje)
         {
             bool respuesta = false;
+            Mensaje = string.Empty;
 
-            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            try
             {
-                try
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("UPDATE UNIDAD_TRANSPORTE SET Estado = @estado WHERE IdUnidad = @idUnidad");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
-                    cmd.Parameters.AddWithValue("@estado", estado);
-                    cmd.Parameters.AddWithValue("@idUnidad", idUnidad);
+                    SqlCommand cmd = new SqlCommand("sp_ModificarUnidadTransporte", oconexion);
+                    cmd.Parameters.AddWithValue("IdUnidad", obj.IdUnidad);
+                    cmd.Parameters.AddWithValue("Placa", obj.Placa);
+                    cmd.Parameters.AddWithValue("Marca", obj.Marca);
+                    cmd.Parameters.AddWithValue("CapacidadToneladas", obj.CapacidadToneladas);
+                    cmd.Parameters.AddWithValue("AnioFabricacion", obj.AnioFabricacion);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
-                    respuesta = cmd.ExecuteNonQuery() > 0;
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
-                catch
+            }
+            catch (Exception ex)
+            {
+                respuesta = false;
+                Mensaje = ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public bool Eliminar(UnidadTransporte obj, out string Mensaje)
+        {
+            bool respuesta = false;
+            Mensaje = string.Empty;
+
+            try
+            {
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    respuesta = false;
+                    SqlCommand cmd = new SqlCommand("DELETE FROM UNIDAD_TRANSPORTE WHERE IdUnidad = @id", oconexion);
+                    cmd.Parameters.AddWithValue("@id", obj.IdUnidad);
+                    cmd.CommandType = CommandType.Text;
+                    oconexion.Open();
+                    respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
                 }
+            }
+            catch (Exception ex)
+            {
+                respuesta = false;
+                Mensaje = ex.Message;
             }
 
             return respuesta;
