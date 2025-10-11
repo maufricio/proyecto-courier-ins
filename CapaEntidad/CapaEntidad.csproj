@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnidadTransporte.cs" />
+    <Compile Include="UtilidadFlete.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

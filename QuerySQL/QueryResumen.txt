@@ -103,6 +103,9 @@ BEGIN
 
     SELECT 
         f.IdFlete,
+        c.NombreCliente,
+        u.Placa,
+        m.NombreMotorista,
         f.MontoCobro AS ValorFlete,
         ISNULL(SUM(g.Monto), 0) AS TotalGastos,
         (f.MontoCobro - ISNULL(SUM(g.Monto), 0)) AS UtilidadNeta,
@@ -110,9 +113,98 @@ BEGIN
             WHEN f.MontoCobro > 0 
             THEN ((f.MontoCobro - ISNULL(SUM(g.Monto), 0)) / f.MontoCobro) * 100
             ELSE 0
-        END AS PorcentajeUtilidad
+        END AS PorcentajeUtilidad,
+        f.FechaRegistro
     FROM FLETE f
+    INNER JOIN CLIENTE c ON f.IdCliente = c.IdCliente
+    INNER JOIN UNIDAD_TRANSPORTE u ON f.IdUnidad = u.IdUnidad
+    INNER JOIN MOTORISTA m ON f.IdMotorista = m.IdMotorista
+    INNER JOIN ESTADO_FLETE e ON f.IdEstado = e.IdEstado
     LEFT JOIN GASTO_FLETE g ON f.IdFlete = g.IdFlete
-    GROUP BY f.IdFlete, f.MontoCobro;
+    WHERE e.Descripcion = 'Terminado'
+    GROUP BY f.IdFlete, c.NombreCliente, u.Placa, m.NombreMotorista, f.MontoCobro, f.FechaRegistro
+    ORDER BY f.FechaRegistro DESC;
 END;
+GO
+
+
+/* ===== STORED PROCEDURE PARA REGISTRAR UNIDAD DE TRANSPORTE ===== */
+CREATE PROCEDURE sp_RegistrarUnidadTransporte
+(
+    @Placa VARCHAR(20),
+    @Marca VARCHAR(50),
+    @CapacidadToneladas DECIMAL(10,2),
+    @AnioFabricacion INT,
+    @Estado BIT,
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    -- Validar que no exista la placa
+    IF EXISTS (SELECT * FROM UNIDAD_TRANSPORTE WHERE Placa = @Placa)
+    BEGIN
+        SET @Mensaje = 'Ya existe una unidad con esa placa'
+        RETURN
+    END
+
+    BEGIN TRY
+        INSERT INTO UNIDAD_TRANSPORTE (Placa, Marca, CapacidadToneladas, AnioFabricacion, Estado)
+        VALUES (@Placa, @Marca, @CapacidadToneladas, @AnioFabricacion, @Estado)
+
+        SET @Resultado = SCOPE_IDENTITY()
+        SET @Mensaje = 'Unidad registrada correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+/* ===== STORED PROCEDURE PARA MODIFICAR UNIDAD DE TRANSPORTE ===== */
+CREATE PROCEDURE sp_ModificarUnidadTransporte
+(
+    @IdUnidad INT,
+    @Placa VARCHAR(20),
+    @Marca VARCHAR(50),
+    @CapacidadToneladas DECIMAL(10,2),
+    @AnioFabricacion INT,
+    @Estado BIT,
+    @Resultado BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    -- Validar que no exista otra unidad con la misma placa
+    IF EXISTS (SELECT * FROM UNIDAD_TRANSPORTE WHERE Placa = @Placa AND IdUnidad != @IdUnidad)
+    BEGIN
+        SET @Mensaje = 'Ya existe otra unidad con esa placa'
+        RETURN
+    END
+
+    BEGIN TRY
+        UPDATE UNIDAD_TRANSPORTE 
+        SET 
+            Placa = @Placa,
+            Marca = @Marca,
+            CapacidadToneladas = @CapacidadToneladas,
+            AnioFabricacion = @AnioFabricacion,
+            Estado = @Estado
+        WHERE IdUnidad = @IdUnidad
+
+        SET @Resultado = 1
+        SET @Mensaje = 'Unidad modificada correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
 GO
