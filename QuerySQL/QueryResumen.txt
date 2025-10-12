@@ -107,3 +107,85 @@ SELECT
 FROM FLETE f
 LEFT JOIN GASTO_FLETE g ON g.IdFlete = f.IdFlete
 GROUP BY f.IdFlete, f.MontoCobro;
+
+/* ----------------------------------------------------------------- */
+
+-- PROCEDIMIENTOS ALMACENADOS PARA GESTIÓN DE GASTOS
+
+CREATE PROCEDURE sp_GuardarGastos
+    @IdFlete INT,
+    @TipoGasto VARCHAR(50),
+    @Concepto VARCHAR(100),
+    @Monto DECIMAL(10,2),
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+    
+    BEGIN TRY
+        INSERT INTO GASTO_FLETE(IdFlete, TipoGasto, Concepto, Monto)
+        VALUES (@IdFlete, @TipoGasto, @Concepto, @Monto)
+        
+        SET @Resultado = SCOPE_IDENTITY()
+        SET @Mensaje = 'Gasto registrado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE sp_EditarGastos
+    @IdGasto INT,
+    @TipoGasto VARCHAR(50),
+    @Concepto VARCHAR(100),
+    @Monto DECIMAL(10,2),
+    @Resultado BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+    
+    BEGIN TRY
+        UPDATE GASTO_FLETE
+        SET TipoGasto = @TipoGasto,
+            Concepto = @Concepto,
+            Monto = @Monto
+        WHERE IdGasto = @IdGasto
+        
+        SET @Resultado = 1
+        SET @Mensaje = 'Gasto actualizado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE sp_EliminarGastos
+    @IdGasto INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+    
+    BEGIN TRY
+        DELETE FROM GASTO_FLETE WHERE IdGasto = @IdGasto
+        SET @Respuesta = 1
+        SET @Mensaje = 'Gasto eliminado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Respuesta = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+/* ----------------------------------------------------------------- */
