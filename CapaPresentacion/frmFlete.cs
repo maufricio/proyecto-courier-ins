@@ -185,6 +185,12 @@ namespace CapaPresentacion
                 MessageBox.Show("El monto debe ser un valor numérico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            // Validación de fechas
+            if (dateTimePicker2.Value < dateTimePicker1.Value)
+            {
+                MessageBox.Show("La fecha y hora de llegada no puede ser anterior a la fecha y hora de salida", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             bool resultado;        
             string mensaje = "";

@@ -46,6 +46,8 @@
             this.txtmotorista = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.txtconsideracion = new System.Windows.Forms.TextBox();
@@ -59,9 +61,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Comboestado = new System.Windows.Forms.ComboBox();
             this.dgvflete = new System.Windows.Forms.DataGridView();
-            this.btnregistrarflete = new FontAwesome.Sharp.IconButton();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
             this.IdFlete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdM = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +76,7 @@
             this.Hsalida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Consideraciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnregistrarflete = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -289,6 +289,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Informacion Flete";
             // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(211, 411);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(166, 22);
+            this.dateTimePicker2.TabIndex = 11;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(223, 382);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(145, 16);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Hora y fecha de salida:";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
@@ -422,39 +440,6 @@
             this.dgvflete.TabIndex = 10;
             this.dgvflete.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvflete_CellClick);
             // 
-            // btnregistrarflete
-            // 
-            this.btnregistrarflete.BackColor = System.Drawing.Color.PaleGreen;
-            this.btnregistrarflete.IconChar = FontAwesome.Sharp.IconChar.TruckFront;
-            this.btnregistrarflete.IconColor = System.Drawing.Color.DarkGreen;
-            this.btnregistrarflete.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnregistrarflete.Location = new System.Drawing.Point(112, 675);
-            this.btnregistrarflete.Name = "btnregistrarflete";
-            this.btnregistrarflete.Size = new System.Drawing.Size(220, 90);
-            this.btnregistrarflete.TabIndex = 11;
-            this.btnregistrarflete.Text = "REGISTRAR";
-            this.btnregistrarflete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnregistrarflete.UseVisualStyleBackColor = false;
-            this.btnregistrarflete.Click += new System.EventHandler(this.btnregistrarflete_Click);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(211, 411);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(166, 22);
-            this.dateTimePicker2.TabIndex = 11;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(232, 382);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(145, 16);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Hora y fecha de salida:";
-            // 
             // IdFlete
             // 
             this.IdFlete.HeaderText = "IdFlete";
@@ -579,6 +564,21 @@
             this.Consideraciones.Name = "Consideraciones";
             this.Consideraciones.ReadOnly = true;
             this.Consideraciones.Width = 250;
+            // 
+            // btnregistrarflete
+            // 
+            this.btnregistrarflete.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnregistrarflete.IconChar = FontAwesome.Sharp.IconChar.TruckFront;
+            this.btnregistrarflete.IconColor = System.Drawing.Color.DarkGreen;
+            this.btnregistrarflete.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnregistrarflete.Location = new System.Drawing.Point(112, 675);
+            this.btnregistrarflete.Name = "btnregistrarflete";
+            this.btnregistrarflete.Size = new System.Drawing.Size(220, 90);
+            this.btnregistrarflete.TabIndex = 11;
+            this.btnregistrarflete.Text = "REGISTRAR";
+            this.btnregistrarflete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnregistrarflete.UseVisualStyleBackColor = false;
+            this.btnregistrarflete.Click += new System.EventHandler(this.btnregistrarflete_Click);
             // 
             // frmFlete
             // 

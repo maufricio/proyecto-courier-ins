@@ -27,7 +27,7 @@ namespace CapaPresentacion
         public Inicio(Usuario objusuario = null)
         {
             if (objusuario == null)
-                usuarioActual = new Usuario() { NombreCompleto ="ADMIN PREDEFINIDO",IdUsuario = 1 };
+                usuarioActual = new Usuario() { NombreCompleto = "ADMIN PREDEFINIDO", IdUsuario = 1 };
             else
                 usuarioActual = objusuario;
 
@@ -36,24 +36,80 @@ namespace CapaPresentacion
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            
-            
+            if (dgvfletequeja.Columns["btnquejas"] == null)
+            {
+                DataGridViewButtonColumn btnquejas = new DataGridViewButtonColumn();
+                btnquejas.Name = "btnquejas";
+                btnquejas.HeaderText = "";
+                btnquejas.Text = "Ver";
+                btnquejas.UseColumnTextForButtonValue = true;
+                dgvfletequeja.Columns.Add(btnquejas);
+            }
 
+            if (dgvfleteprogramado.Columns["btnprogramado"] == null)
+            {
+                DataGridViewButtonColumn btnprogramado = new DataGridViewButtonColumn();
+                btnprogramado.Name = "btnprogramado";
+                btnprogramado.HeaderText = "";
+                btnprogramado.Text = "Ver";
+                btnprogramado.UseColumnTextForButtonValue = true;
+                dgvfleteprogramado.Columns.Add(btnprogramado);
+            }
 
+            List<Flete> lista = new CN_Flete().Listar();
+
+            foreach (Flete item in lista.Where(f => f.oEstado.IdEstado == 5))
+            {
+                dgvfletequeja.Rows.Add(new object[] {
+                    item.IdFlete,                      // 0                   
+                    item.oCliente.NombreCliente,       // 1
+                    item.oMotorista.NombreM,           // 2
+                    item.oTransporte.Placa,            // 3
+                    item.oEstado.Descripcion,          // 4
+                });
+            }
+            foreach (Flete item in lista.Where(f => f.oEstado.IdEstado == 1))
+            {
+                dgvfleteprogramado.Rows.Add(new object[] {
+                    item.IdFlete,                      // 0                   
+                    item.oCliente.NombreCliente,       // 1
+                    item.oMotorista.NombreM,           // 2
+                    item.oTransporte.Placa,            // 3
+                    item.oEstado.Descripcion,          // 4
+                });
+            }
+
+            for (int i = 3; i < dgvfletequeja.Rows.Count; i++)
+            {
+                dgvfletequeja.Rows[i].Visible = false;
+            }
+
+            for (int i = 3; i < dgvfleteprogramado.Rows.Count; i++)
+            {
+                dgvfleteprogramado.Rows[i].Visible = false;
+            }
 
             lblusuario.Text = usuarioActual.NombreCompleto;
         }
 
 
-        private void AbrirFormulario(IconMenuItem menu, Form formulario) {
+        private void AbrirFormulario(IconMenuItem menu, Form formulario)
+        {
 
-            if (MenuActivo != null) {
+            dgvfleteprogramado.Visible = false;
+            dgvfletequeja.Visible = false;
+            labelprogramado.Visible = false;
+            labelqueja.Visible = false;
+
+            if (MenuActivo != null)
+            {
                 MenuActivo.BackColor = Color.White;
             }
             menu.BackColor = Color.Silver;
             MenuActivo = menu;
 
-            if (FormularioActivo != null) {
+            if (FormularioActivo != null)
+            {
                 FormularioActivo.Close();
             }
 
@@ -140,7 +196,8 @@ namespace CapaPresentacion
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { 
+            if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 this.Close();
             }
         }
@@ -148,6 +205,87 @@ namespace CapaPresentacion
         private void contenedor_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dgvfletequeja_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dash_Click(object sender, EventArgs e)
+        {
+            dgvfletequeja.Visible = true;
+            dgvfleteprogramado.Visible = true;
+            labelqueja.Visible = true;
+            labelprogramado.Visible = true;
+
+            if (FormularioActivo != null)
+            {
+                FormularioActivo.Close();
+                FormularioActivo = null;
+            }
+
+            RecargarFLete();
+        }
+
+        private void RecargarFLete()
+        {
+            dgvfleteprogramado.Rows.Clear();
+            dgvfletequeja.Rows.Clear();
+            List<Flete> lista = new CN_Flete().Listar();
+            foreach (Flete item in lista.Where(f => f.oEstado.IdEstado == 5))
+            {
+                dgvfletequeja.Rows.Add(new object[] {
+                    item.IdFlete,                      // 0                   
+                    item.oCliente.NombreCliente,       // 1
+                    item.oMotorista.NombreM,           // 2
+                    item.oTransporte.Placa,            // 3
+                    item.oEstado.Descripcion,          // 4
+                });
+            }
+            foreach (Flete item in lista.Where(f => f.oEstado.IdEstado == 1))
+            {
+                dgvfleteprogramado.Rows.Add(new object[] {
+                    item.IdFlete,                      // 0                   
+                    item.oCliente.NombreCliente,       // 1
+                    item.oMotorista.NombreM,           // 2
+                    item.oTransporte.Placa,            // 3
+                    item.oEstado.Descripcion,          // 4
+                });
+            }
+            for (int i = 3; i < dgvfletequeja.Rows.Count; i++)
+            {
+                dgvfletequeja.Rows[i].Visible = false;
+            }
+
+            for (int i = 3; i < dgvfleteprogramado.Rows.Count; i++)
+            {
+                dgvfleteprogramado.Rows[i].Visible = false;
+            }
+
+        }
+
+        private void dgvfletequeja_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvfletequeja.Columns[e.ColumnIndex].Name == "btnquejas")
+            {
+                mdfletesqueja md = new mdfletesqueja();
+                md.ShowDialog();
+            }
+           
+        }
+
+        private void dgvfleteprogramado_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvfleteprogramado.Columns[e.ColumnIndex].Name == "btnprogramado")
+            {
+                mdfletesprogramado md = new mdfletesprogramado();
+                md.ShowDialog();
+            }
         }
     }
 }

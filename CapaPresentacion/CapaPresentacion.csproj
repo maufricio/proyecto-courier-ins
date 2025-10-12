@@ -132,6 +132,12 @@
     <Compile Include="frmCompras.Designer.cs">
       <DependentUpon>frmCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmdashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmdashboard.Designer.cs">
+      <DependentUpon>frmdashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDetalleCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +234,18 @@
     <Compile Include="Modales\mdclientes.Designer.cs">
       <DependentUpon>mdclientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\mdfletesprogramado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdfletesprogramado.Designer.cs">
+      <DependentUpon>mdfletesprogramado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdfletesqueja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdfletesqueja.Designer.cs">
+      <DependentUpon>mdfletesqueja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\mdmotoristas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCompras.resx">
       <DependentUpon>frmCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmdashboard.resx">
+      <DependentUpon>frmdashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetalleCompra.resx">
       <DependentUpon>frmDetalleCompra.cs</DependentUpon>
@@ -311,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdclientes.resx">
       <DependentUpon>mdclientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdfletesprogramado.resx">
+      <DependentUpon>mdfletesprogramado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdfletesqueja.resx">
+      <DependentUpon>mdfletesqueja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdmotoristas.resx">
       <DependentUpon>mdmotoristas.cs</DependentUpon>

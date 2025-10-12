@@ -46,14 +46,32 @@
             this.submenucategoria = new FontAwesome.Sharp.IconMenuItem();
             this.submenuproducto = new FontAwesome.Sharp.IconMenuItem();
             this.submenunegocio = new System.Windows.Forms.ToolStripMenuItem();
+            this.dash = new FontAwesome.Sharp.IconMenuItem();
             this.menutitulo = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
+            this.labelprogramado = new System.Windows.Forms.Label();
+            this.dgvfleteprogramado = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelqueja = new System.Windows.Forms.Label();
+            this.dgvfletequeja = new System.Windows.Forms.DataGridView();
+            this.IdFlete = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdMotorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
             this.btnsalir = new FontAwesome.Sharp.IconButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menu.SuspendLayout();
+            this.contenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfleteprogramado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfletequeja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +87,8 @@
             this.menureportes,
             this.menuusuarios,
             this.menuacercade,
-            this.menumantenedor});
+            this.menumantenedor,
+            this.dash});
             this.menu.Location = new System.Drawing.Point(0, 81);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1543, 73);
@@ -98,17 +117,19 @@
             this.submenuregistrarcompra.IconColor = System.Drawing.Color.Black;
             this.submenuregistrarcompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenuregistrarcompra.Name = "submenuregistrarcompra";
-            this.submenuregistrarcompra.Size = new System.Drawing.Size(224, 26);
+            this.submenuregistrarcompra.Size = new System.Drawing.Size(165, 26);
             this.submenuregistrarcompra.Text = "Registrar";
             this.submenuregistrarcompra.Click += new System.EventHandler(this.submenuregistrarcompra_Click);
             // 
             // submenutverdetallecompra
             // 
+            this.submenutverdetallecompra.Checked = true;
+            this.submenutverdetallecompra.CheckState = System.Windows.Forms.CheckState.Checked;
             this.submenutverdetallecompra.IconChar = FontAwesome.Sharp.IconChar.None;
             this.submenutverdetallecompra.IconColor = System.Drawing.Color.Black;
             this.submenutverdetallecompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenutverdetallecompra.Name = "submenutverdetallecompra";
-            this.submenutverdetallecompra.Size = new System.Drawing.Size(224, 26);
+            this.submenutverdetallecompra.Size = new System.Drawing.Size(165, 26);
             this.submenutverdetallecompra.Text = "Ver Detalle";
             this.submenutverdetallecompra.Click += new System.EventHandler(this.submenutverdetallecompra_Click);
             // 
@@ -278,6 +299,20 @@
             this.submenunegocio.Text = "Negocio";
             this.submenunegocio.Click += new System.EventHandler(this.submenunegocio_Click);
             // 
+            // dash
+            // 
+            this.dash.AutoSize = false;
+            this.dash.IconChar = FontAwesome.Sharp.IconChar.Diamond;
+            this.dash.IconColor = System.Drawing.Color.Black;
+            this.dash.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.dash.IconSize = 50;
+            this.dash.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.dash.Name = "dash";
+            this.dash.Size = new System.Drawing.Size(152, 69);
+            this.dash.Text = "Panel";
+            this.dash.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.dash.Click += new System.EventHandler(this.dash_Click);
+            // 
             // menutitulo
             // 
             this.menutitulo.AutoSize = false;
@@ -305,6 +340,10 @@
             // 
             // contenedor
             // 
+            this.contenedor.Controls.Add(this.labelprogramado);
+            this.contenedor.Controls.Add(this.dgvfleteprogramado);
+            this.contenedor.Controls.Add(this.labelqueja);
+            this.contenedor.Controls.Add(this.dgvfletequeja);
             this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenedor.Location = new System.Drawing.Point(0, 154);
             this.contenedor.Margin = new System.Windows.Forms.Padding(4);
@@ -312,6 +351,146 @@
             this.contenedor.Size = new System.Drawing.Size(1543, 747);
             this.contenedor.TabIndex = 3;
             this.contenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.contenedor_Paint);
+            // 
+            // labelprogramado
+            // 
+            this.labelprogramado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelprogramado.Location = new System.Drawing.Point(109, 412);
+            this.labelprogramado.Name = "labelprogramado";
+            this.labelprogramado.Size = new System.Drawing.Size(465, 30);
+            this.labelprogramado.TabIndex = 21;
+            this.labelprogramado.Text = "Fletes Programados";
+            // 
+            // dgvfleteprogramado
+            // 
+            this.dgvfleteprogramado.AllowUserToAddRows = false;
+            this.dgvfleteprogramado.AllowUserToDeleteRows = false;
+            this.dgvfleteprogramado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvfleteprogramado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dgvfleteprogramado.Location = new System.Drawing.Point(114, 445);
+            this.dgvfleteprogramado.Name = "dgvfleteprogramado";
+            this.dgvfleteprogramado.ReadOnly = true;
+            this.dgvfleteprogramado.RowHeadersWidth = 51;
+            this.dgvfleteprogramado.RowTemplate.Height = 24;
+            this.dgvfleteprogramado.Size = new System.Drawing.Size(1105, 102);
+            this.dgvfleteprogramado.TabIndex = 20;
+            this.dgvfleteprogramado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvfleteprogramado_CellClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "IdFlete";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cliente";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Motorista";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Placa Vehiculo";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Estado";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 250;
+            // 
+            // labelqueja
+            // 
+            this.labelqueja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelqueja.Location = new System.Drawing.Point(109, 578);
+            this.labelqueja.Name = "labelqueja";
+            this.labelqueja.Size = new System.Drawing.Size(459, 24);
+            this.labelqueja.TabIndex = 19;
+            this.labelqueja.Text = "Fletes con Queja";
+            // 
+            // dgvfletequeja
+            // 
+            this.dgvfletequeja.AllowUserToAddRows = false;
+            this.dgvfletequeja.AllowUserToDeleteRows = false;
+            this.dgvfletequeja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvfletequeja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdFlete,
+            this.IdCliente,
+            this.IdMotorista,
+            this.Placa,
+            this.IdEstado});
+            this.dgvfletequeja.Location = new System.Drawing.Point(114, 605);
+            this.dgvfletequeja.Name = "dgvfletequeja";
+            this.dgvfletequeja.ReadOnly = true;
+            this.dgvfletequeja.RowHeadersWidth = 51;
+            this.dgvfletequeja.RowTemplate.Height = 24;
+            this.dgvfletequeja.Size = new System.Drawing.Size(1105, 102);
+            this.dgvfletequeja.TabIndex = 18;
+            this.dgvfletequeja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvfletequeja_CellClick);
+            // 
+            // IdFlete
+            // 
+            this.IdFlete.HeaderText = "IdFlete";
+            this.IdFlete.MinimumWidth = 6;
+            this.IdFlete.Name = "IdFlete";
+            this.IdFlete.ReadOnly = true;
+            this.IdFlete.Visible = false;
+            this.IdFlete.Width = 125;
+            // 
+            // IdCliente
+            // 
+            this.IdCliente.HeaderText = "Cliente";
+            this.IdCliente.MinimumWidth = 6;
+            this.IdCliente.Name = "IdCliente";
+            this.IdCliente.ReadOnly = true;
+            this.IdCliente.Width = 250;
+            // 
+            // IdMotorista
+            // 
+            this.IdMotorista.HeaderText = "Motorista";
+            this.IdMotorista.MinimumWidth = 6;
+            this.IdMotorista.Name = "IdMotorista";
+            this.IdMotorista.ReadOnly = true;
+            this.IdMotorista.Width = 250;
+            // 
+            // Placa
+            // 
+            this.Placa.HeaderText = "Placa Vehiculo";
+            this.Placa.MinimumWidth = 6;
+            this.Placa.Name = "Placa";
+            this.Placa.ReadOnly = true;
+            this.Placa.Width = 200;
+            // 
+            // IdEstado
+            // 
+            this.IdEstado.HeaderText = "Estado";
+            this.IdEstado.MinimumWidth = 6;
+            this.IdEstado.Name = "IdEstado";
+            this.IdEstado.ReadOnly = true;
+            this.IdEstado.Width = 250;
             // 
             // label2
             // 
@@ -389,6 +568,9 @@
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.contenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfleteprogramado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfletequeja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -422,6 +604,21 @@
         private System.Windows.Forms.ToolStripMenuItem submenureporteventas;
         private FontAwesome.Sharp.IconButton btnsalir;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelprogramado;
+        private System.Windows.Forms.DataGridView dgvfleteprogramado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Label labelqueja;
+        private System.Windows.Forms.DataGridView dgvfletequeja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFlete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdMotorista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Placa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEstado;
+        private FontAwesome.Sharp.IconMenuItem dash;
     }
 }
 
