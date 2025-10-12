@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,23 +22,31 @@ namespace CapaDatos
 
                 try
                 {
-
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT * FROM CLIENTE");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
-                    cmd.CommandType = CommandType.Text;
+                    string sql = "SELECT IdCliente, NombreCliente, Direccion, Estado, FechaRegistro, correo FROM CLIENTE";
+                    SqlCommand cmd = new SqlCommand(sql, oconexion);
+                    cmd.CommandType = CommandType.Text; // Esto le dice a ADO.NET que es una consulta de texto simple
                     oconexion.Open();
+
+
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
+                            int clienteId = Convert.ToInt32(dr["IdCliente"]);
+                            string nombreCliente = dr["NombreCliente"].ToString();
+                            string dirCliente = dr["Direccion"].ToString();
+                            int estado = Convert.ToBoolean(dr["Estado"]) ? 1 : 0;
+                            DateTime fechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                            string correo = dr["correo"].ToString();
+
                             lista.Add(new Cliente()
                             {
-                                IdCliente = Convert.ToInt32(dr["IdCliente"]),
-                                NombreCliente = dr["NombreCliente"].ToString(),
-                                Direccion = dr["Direccion"].ToString(),
-                                Estado = dr["Estado"].ToString(),
-                                FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString())
+                                IdCliente = clienteId,
+                                NombreCliente = nombreCliente,
+                                Direccion = dirCliente,
+                                Estado = estado,
+                                FechaRegistro = fechaRegistro,
+                                Correo = correo
                             });
 
                         }
@@ -63,93 +72,89 @@ namespace CapaDatos
 
         public int Registrar(Cliente obj, out string Mensaje)
         {
-            int idClientegenerado = 0;
+            int idClienteGenerado = 0;
             Mensaje = string.Empty;
+
             try
             {
-
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
+                    SqlCommand cmd = new SqlCommand(
+                            "INSERT INTO CLIENTE (NombreCliente, Direccion, correo, Estado, FechaRegistro)" +
+                            "VALUES (@NombreCliente, @Direccion, @Correo, @Estado, @FechaRegistro); " +
+                            "SELECT SCOPE_IDENTITY();",
+                            oconexion
+                    );
 
-                    SqlCommand cmd = new SqlCommand("sp_RegistrarCliente", oconexion);
-                    cmd.Parameters.AddWithValue("Documento", obj.Documento);
-                    cmd.Parameters.AddWithValue("NombreCompleto", obj.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Correo", obj.Correo);
-                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombreCliente", obj.NombreCliente);
+                    cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
+                    cmd.Parameters.AddWithValue("@Correo", obj.Correo);
+                    cmd.Parameters.AddWithValue("@Estado", obj.Estado);
+                    cmd.Parameters.AddWithValue("@FechaRegistro", obj.FechaRegistro);
+
+                    cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    idClientegenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
+                    // Recupera el ID generado automáticamente después de insertar el registro a la base de datos.
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        idClienteGenerado = Convert.ToInt32(result);
+                        Mensaje = "Cliente registrado correctamente";
+                    }
+                    else
+                    {
+                        idClienteGenerado = 0;
+                        Mensaje = "No se pudo registrar el cliente";
+                    }
                 }
-
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
-                idClientegenerado = 0;
+                idClienteGenerado = 0;
                 Mensaje = ex.Message;
             }
 
-
-
-            return idClientegenerado;
+            return idClienteGenerado;
         }
-
-
 
         public bool Editar(Cliente obj, out string Mensaje)
         {
             bool respuesta = false;
             Mensaje = string.Empty;
 
-
             try
             {
-
-                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+                using(SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
+                    SqlCommand cmd = new SqlCommand(
+                        "UPDATE CLIENTE SET NombreCliente = @NombreCliente, Direccion = @Direccion, Estado = @Estado WHERE IdCliente = @IdCliente",
+                        oconexion
+                    );
 
-                    SqlCommand cmd = new SqlCommand("sp_ModificarCliente", oconexion);
-                    cmd.Parameters.AddWithValue("IdCliente", obj.IdCliente);
-                    cmd.Parameters.AddWithValue("Documento", obj.Documento);
-                    cmd.Parameters.AddWithValue("NombreCompleto", obj.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Correo", obj.Correo);
-                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdCliente", obj.IdCliente);
+                    cmd.Parameters.AddWithValue("@NombreCliente", obj.NombreCliente);
+                    cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
+                    cmd.Parameters.AddWithValue("@Estado", obj.Estado);
+
+                    cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
+                    respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
 
-                    cmd.ExecuteNonQuery();
+                    Mensaje = respuesta ? "Cliente editado correctamente" : "No se pudo editar el cliente";
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
+                    return respuesta;
                 }
-
-            }
-            catch (Exception ex)
+            } catch(Exception ex)
             {
                 respuesta = false;
                 Mensaje = ex.Message;
             }
 
-
-
-            return respuesta;
+            return false;
         }
 
-
-        public bool Eliminar(Cliente obj, out string Mensaje)
+        public bool Eliminar(int idCliente, out string Mensaje)
         {
             bool respuesta = false;
             Mensaje = string.Empty;
@@ -157,24 +162,25 @@ namespace CapaDatos
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    
-                    SqlCommand cmd = new SqlCommand("delete from cliente where IdCliente = @id", oconexion);
-                    cmd.Parameters.AddWithValue("@id", obj.IdCliente);
+                    SqlCommand cmd = new SqlCommand(
+                        "DELETE FROM CLIENTE WHERE IdCliente = @IdCliente",
+                        oconexion
+                    );
+                    cmd.Parameters.AddWithValue("@IdCliente", idCliente);
                     cmd.CommandType = CommandType.Text;
                     oconexion.Open();
                     respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+                    Mensaje = respuesta ? "Cliente eliminado correctamente" : "No se pudo eliminar el cliente";
+                    return respuesta;
                 }
-
             }
             catch (Exception ex)
             {
                 respuesta = false;
                 Mensaje = ex.Message;
             }
-
-            return respuesta;
+            return false;
         }
-
 
     }
 }

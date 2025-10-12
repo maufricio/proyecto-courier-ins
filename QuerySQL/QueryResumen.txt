@@ -116,3 +116,7 @@ BEGIN
     GROUP BY f.IdFlete, f.MontoCobro;
 END;
 GO
+
+
+ALTER TABLE CLIENTE
+ADD correo VARCHAR NOT NULL;
