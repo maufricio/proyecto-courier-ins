@@ -28,485 +28,208 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.ibtnExcel = new FontAwesome.Sharp.IconButton();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbGastos = new System.Windows.Forms.GroupBox();
-            this.cbNoHosp = new System.Windows.Forms.ComboBox();
-            this.txtOtros = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cbNoLlantas = new System.Windows.Forms.ComboBox();
-            this.txtHospedaje = new System.Windows.Forms.TextBox();
-            this.txtParqueo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.cbNoAux = new System.Windows.Forms.ComboBox();
-            this.txtGas = new System.Windows.Forms.TextBox();
-            this.txtAuxilar = new System.Windows.Forms.TextBox();
-            this.txtMotorista = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtAceite = new System.Windows.Forms.TextBox();
-            this.txtLlanta = new System.Windows.Forms.TextBox();
-            this.txtBateria = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbVarios = new System.Windows.Forms.CheckBox();
-            this.cbProd = new System.Windows.Forms.CheckBox();
-            this.cbCamion = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ibtnGuardar = new FontAwesome.Sharp.IconButton();
-            this.ibtnPDF = new FontAwesome.Sharp.IconButton();
-            this.dgvdata = new System.Windows.Forms.DataGridView();
-            this.gbValorflete = new System.Windows.Forms.GroupBox();
-            this.textFleteMonto = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtIdFlete = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.gbProd = new System.Windows.Forms.GroupBox();
+            this.ibtnAggProd = new FontAwesome.Sharp.IconButton();
+            this.cmbProd = new System.Windows.Forms.ComboBox();
+            this.mtxtProd = new System.Windows.Forms.MaskedTextBox();
+            this.nudProd = new System.Windows.Forms.NumericUpDown();
+            this.gbVarios = new System.Windows.Forms.GroupBox();
+            this.ibtnAggVarios = new FontAwesome.Sharp.IconButton();
+            this.nudVarios = new System.Windows.Forms.NumericUpDown();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.mtxtVarios = new System.Windows.Forms.MaskedTextBox();
+            this.cmbVarios = new System.Windows.Forms.ComboBox();
             this.pCamion = new System.Windows.Forms.Panel();
-            this.ibtnEditar = new FontAwesome.Sharp.IconButton();
+            this.gbCamion = new System.Windows.Forms.GroupBox();
+            this.ibtnAggCamion = new FontAwesome.Sharp.IconButton();
+            this.mtxtCamion = new System.Windows.Forms.MaskedTextBox();
+            this.cmbCamion = new System.Windows.Forms.ComboBox();
+            this.nudCamion = new System.Windows.Forms.NumericUpDown();
             this.ibtnLimpiar = new FontAwesome.Sharp.IconButton();
+            this.ibtnEditar = new FontAwesome.Sharp.IconButton();
+            this.ibtnGuardar = new FontAwesome.Sharp.IconButton();
+            this.dgvdata = new System.Windows.Forms.DataGridView();
             this.valorFlete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalGastos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.utilidadNeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeUtilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.ListBox();
+            this.gblist = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.gbGastos.SuspendLayout();
+            this.gbProd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProd)).BeginInit();
+            this.gbVarios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVarios)).BeginInit();
+            this.gbCamion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCamion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
-            this.gbValorflete.SuspendLayout();
+            this.gblist.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ibtnExcel
-            // 
-            this.ibtnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.ibtnExcel.IconColor = System.Drawing.Color.Black;
-            this.ibtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnExcel.IconSize = 15;
-            this.ibtnExcel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ibtnExcel.Location = new System.Drawing.Point(649, 446);
-            this.ibtnExcel.Name = "ibtnExcel";
-            this.ibtnExcel.Size = new System.Drawing.Size(134, 21);
-            this.ibtnExcel.TabIndex = 253;
-            this.ibtnExcel.Text = "Descargar Excel";
-            this.ibtnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ibtnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ibtnExcel.UseVisualStyleBackColor = true;
             // 
             // gbGastos
             // 
             this.gbGastos.BackColor = System.Drawing.Color.White;
-            this.gbGastos.Controls.Add(this.ibtnLimpiar);
-            this.gbGastos.Controls.Add(this.ibtnEditar);
-            this.gbGastos.Controls.Add(this.cbCamion);
-            this.gbGastos.Controls.Add(this.label7);
-            this.gbGastos.Controls.Add(this.label5);
+            this.gbGastos.Controls.Add(this.gbProd);
+            this.gbGastos.Controls.Add(this.gbVarios);
             this.gbGastos.Controls.Add(this.pCamion);
-            this.gbGastos.Controls.Add(this.txtBateria);
-            this.gbGastos.Controls.Add(this.cbNoHosp);
-            this.gbGastos.Controls.Add(this.label6);
-            this.gbGastos.Controls.Add(this.txtOtros);
-            this.gbGastos.Controls.Add(this.cbNoLlantas);
-            this.gbGastos.Controls.Add(this.label14);
-            this.gbGastos.Controls.Add(this.txtLlanta);
-            this.gbGastos.Controls.Add(this.txtHospedaje);
-            this.gbGastos.Controls.Add(this.txtAceite);
-            this.gbGastos.Controls.Add(this.txtParqueo);
-            this.gbGastos.Controls.Add(this.label2);
-            this.gbGastos.Controls.Add(this.label13);
-            this.gbGastos.Controls.Add(this.cbNoAux);
-            this.gbGastos.Controls.Add(this.txtGas);
-            this.gbGastos.Controls.Add(this.txtAuxilar);
-            this.gbGastos.Controls.Add(this.txtMotorista);
-            this.gbGastos.Controls.Add(this.label8);
-            this.gbGastos.Controls.Add(this.label11);
-            this.gbGastos.Controls.Add(this.label12);
-            this.gbGastos.Controls.Add(this.cbVarios);
-            this.gbGastos.Controls.Add(this.cbProd);
-            this.gbGastos.Controls.Add(this.ibtnGuardar);
-            this.gbGastos.Location = new System.Drawing.Point(249, 83);
+            this.gbGastos.Controls.Add(this.gbCamion);
+            this.gbGastos.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbGastos.Location = new System.Drawing.Point(40, 104);
             this.gbGastos.Name = "gbGastos";
-            this.gbGastos.Size = new System.Drawing.Size(675, 265);
+            this.gbGastos.Size = new System.Drawing.Size(524, 280);
             this.gbGastos.TabIndex = 252;
             this.gbGastos.TabStop = false;
-            this.gbGastos.Text = "Gastos totales";
-            // 
-            // cbNoHosp
-            // 
-            this.cbNoHosp.Enabled = false;
-            this.cbNoHosp.FormattingEnabled = true;
-            this.cbNoHosp.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cbNoHosp.Location = new System.Drawing.Point(344, 176);
-            this.cbNoHosp.Name = "cbNoHosp";
-            this.cbNoHosp.Size = new System.Drawing.Size(51, 21);
-            this.cbNoHosp.TabIndex = 268;
-            // 
-            // txtOtros
-            // 
-            this.txtOtros.Enabled = false;
-            this.txtOtros.Location = new System.Drawing.Point(590, 176);
-            this.txtOtros.Name = "txtOtros";
-            this.txtOtros.Size = new System.Drawing.Size(46, 20);
-            this.txtOtros.TabIndex = 267;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(545, 179);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(39, 15);
-            this.label14.TabIndex = 266;
-            this.label14.Text = "Otros:";
-            // 
-            // cbNoLlantas
-            // 
-            this.cbNoLlantas.Enabled = false;
-            this.cbNoLlantas.FormattingEnabled = true;
-            this.cbNoLlantas.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cbNoLlantas.Location = new System.Drawing.Point(344, 53);
-            this.cbNoLlantas.Name = "cbNoLlantas";
-            this.cbNoLlantas.Size = new System.Drawing.Size(51, 21);
-            this.cbNoLlantas.TabIndex = 265;
-            // 
-            // txtHospedaje
-            // 
-            this.txtHospedaje.Enabled = false;
-            this.txtHospedaje.Location = new System.Drawing.Point(401, 176);
-            this.txtHospedaje.Name = "txtHospedaje";
-            this.txtHospedaje.Size = new System.Drawing.Size(46, 20);
-            this.txtHospedaje.TabIndex = 264;
-            // 
-            // txtParqueo
-            // 
-            this.txtParqueo.Enabled = false;
-            this.txtParqueo.Location = new System.Drawing.Point(131, 176);
-            this.txtParqueo.Name = "txtParqueo";
-            this.txtParqueo.Size = new System.Drawing.Size(46, 20);
-            this.txtParqueo.TabIndex = 263;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(268, 179);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 15);
-            this.label2.TabIndex = 262;
-            this.label2.Text = "Hospedaje:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.White;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(68, 179);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 15);
-            this.label13.TabIndex = 261;
-            this.label13.Text = "Parqueo:";
-            // 
-            // cbNoAux
-            // 
-            this.cbNoAux.Enabled = false;
-            this.cbNoAux.FormattingEnabled = true;
-            this.cbNoAux.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.cbNoAux.Location = new System.Drawing.Point(344, 114);
-            this.cbNoAux.Name = "cbNoAux";
-            this.cbNoAux.Size = new System.Drawing.Size(51, 21);
-            this.cbNoAux.TabIndex = 260;
-            // 
-            // txtGas
-            // 
-            this.txtGas.Enabled = false;
-            this.txtGas.Location = new System.Drawing.Point(590, 114);
-            this.txtGas.Name = "txtGas";
-            this.txtGas.Size = new System.Drawing.Size(46, 20);
-            this.txtGas.TabIndex = 259;
-            // 
-            // txtAuxilar
-            // 
-            this.txtAuxilar.Enabled = false;
-            this.txtAuxilar.Location = new System.Drawing.Point(401, 114);
-            this.txtAuxilar.Name = "txtAuxilar";
-            this.txtAuxilar.Size = new System.Drawing.Size(46, 20);
-            this.txtAuxilar.TabIndex = 258;
-            // 
-            // txtMotorista
-            // 
-            this.txtMotorista.Enabled = false;
-            this.txtMotorista.Location = new System.Drawing.Point(131, 114);
-            this.txtMotorista.Name = "txtMotorista";
-            this.txtMotorista.Size = new System.Drawing.Size(46, 20);
-            this.txtMotorista.TabIndex = 257;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(505, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(79, 15);
-            this.label8.TabIndex = 256;
-            this.label8.Text = "Combustible:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(230, 117);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(108, 15);
-            this.label11.TabIndex = 255;
-            this.label11.Text = "Sueldo ayudantes:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.White;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(22, 117);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(103, 15);
-            this.label12.TabIndex = 254;
-            this.label12.Text = "Sueldo motorista:";
-            // 
-            // txtAceite
-            // 
-            this.txtAceite.Enabled = false;
-            this.txtAceite.Location = new System.Drawing.Point(590, 53);
-            this.txtAceite.Name = "txtAceite";
-            this.txtAceite.Size = new System.Drawing.Size(46, 20);
-            this.txtAceite.TabIndex = 253;
-            // 
-            // txtLlanta
-            // 
-            this.txtLlanta.Enabled = false;
-            this.txtLlanta.Location = new System.Drawing.Point(401, 53);
-            this.txtLlanta.Name = "txtLlanta";
-            this.txtLlanta.Size = new System.Drawing.Size(46, 20);
-            this.txtLlanta.TabIndex = 252;
-            // 
-            // txtBateria
-            // 
-            this.txtBateria.Enabled = false;
-            this.txtBateria.Location = new System.Drawing.Point(131, 53);
-            this.txtBateria.Name = "txtBateria";
-            this.txtBateria.Size = new System.Drawing.Size(46, 20);
-            this.txtBateria.TabIndex = 251;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(478, 56);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 15);
-            this.label7.TabIndex = 250;
-            this.label7.Text = "Cambio de aceite:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(288, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 15);
-            this.label6.TabIndex = 249;
-            this.label6.Text = "Llantas:";
-            // 
-            // cbVarios
-            // 
-            this.cbVarios.AutoSize = true;
-            this.cbVarios.Location = new System.Drawing.Point(23, 152);
-            this.cbVarios.Name = "cbVarios";
-            this.cbVarios.Size = new System.Drawing.Size(55, 17);
-            this.cbVarios.TabIndex = 248;
-            this.cbVarios.Text = "Varios";
-            this.cbVarios.UseVisualStyleBackColor = true;
-            this.cbVarios.CheckedChanged += new System.EventHandler(this.cbVarios_CheckedChanged);
-            // 
-            // cbProd
-            // 
-            this.cbProd.AutoSize = true;
-            this.cbProd.Location = new System.Drawing.Point(25, 90);
-            this.cbProd.Name = "cbProd";
-            this.cbProd.Size = new System.Drawing.Size(80, 17);
-            this.cbProd.TabIndex = 247;
-            this.cbProd.Text = "Producción";
-            this.cbProd.UseVisualStyleBackColor = true;
-            this.cbProd.CheckedChanged += new System.EventHandler(this.cbProd_CheckedChanged);
-            // 
-            // cbCamion
-            // 
-            this.cbCamion.AutoSize = true;
-            this.cbCamion.Location = new System.Drawing.Point(23, 30);
-            this.cbCamion.Name = "cbCamion";
-            this.cbCamion.Size = new System.Drawing.Size(113, 17);
-            this.cbCamion.TabIndex = 246;
-            this.cbCamion.Text = "Unidad de Camión";
-            this.cbCamion.UseVisualStyleBackColor = true;
-            this.cbCamion.CheckedChanged += new System.EventHandler(this.cbCamion_CheckedChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(76, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 15);
-            this.label5.TabIndex = 245;
-            this.label5.Text = "Batería:";
-            // 
-            // ibtnGuardar
-            // 
-            this.ibtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnGuardar.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
-            this.ibtnGuardar.IconColor = System.Drawing.Color.Black;
-            this.ibtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnGuardar.IconSize = 17;
-            this.ibtnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ibtnGuardar.Location = new System.Drawing.Point(522, 225);
-            this.ibtnGuardar.Name = "ibtnGuardar";
-            this.ibtnGuardar.Size = new System.Drawing.Size(134, 21);
-            this.ibtnGuardar.TabIndex = 244;
-            this.ibtnGuardar.Text = "Calcular";
-            this.ibtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ibtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ibtnGuardar.UseVisualStyleBackColor = true;
-            this.ibtnGuardar.Click += new System.EventHandler(this.ibtnGuardar_Click);
-            // 
-            // ibtnPDF
-            // 
-            this.ibtnPDF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnPDF.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
-            this.ibtnPDF.IconColor = System.Drawing.Color.Black;
-            this.ibtnPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnPDF.IconSize = 17;
-            this.ibtnPDF.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ibtnPDF.Location = new System.Drawing.Point(789, 446);
-            this.ibtnPDF.Name = "ibtnPDF";
-            this.ibtnPDF.Size = new System.Drawing.Size(134, 21);
-            this.ibtnPDF.TabIndex = 251;
-            this.ibtnPDF.Text = "Descargar en PDF";
-            this.ibtnPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ibtnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ibtnPDF.UseVisualStyleBackColor = true;
-            // 
-            // dgvdata
-            // 
-            this.dgvdata.AllowUserToAddRows = false;
-            this.dgvdata.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.valorFlete,
-            this.totalGastos,
-            this.utilidadNeta,
-            this.porcentajeUtilidad});
-            this.dgvdata.Location = new System.Drawing.Point(89, 364);
-            this.dgvdata.MultiSelect = false;
-            this.dgvdata.Name = "dgvdata";
-            this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dgvdata.RowTemplate.Height = 28;
-            this.dgvdata.Size = new System.Drawing.Size(834, 59);
-            this.dgvdata.TabIndex = 250;
-            // 
-            // gbValorflete
-            // 
-            this.gbValorflete.BackColor = System.Drawing.Color.White;
-            this.gbValorflete.Controls.Add(this.textFleteMonto);
-            this.gbValorflete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbValorflete.Location = new System.Drawing.Point(89, 83);
-            this.gbValorflete.Name = "gbValorflete";
-            this.gbValorflete.Size = new System.Drawing.Size(154, 53);
-            this.gbValorflete.TabIndex = 249;
-            this.gbValorflete.TabStop = false;
-            this.gbValorflete.Text = "Valor de flete";
-            // 
-            // textFleteMonto
-            // 
-            this.textFleteMonto.Enabled = false;
-            this.textFleteMonto.Location = new System.Drawing.Point(13, 20);
-            this.textFleteMonto.Name = "textFleteMonto";
-            this.textFleteMonto.Size = new System.Drawing.Size(129, 21);
-            this.textFleteMonto.TabIndex = 217;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(736, 60);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(53, 13);
-            this.label26.TabIndex = 248;
-            this.label26.Text = "No. Flete:";
-            // 
-            // txtIdFlete
-            // 
-            this.txtIdFlete.Enabled = false;
-            this.txtIdFlete.Location = new System.Drawing.Point(795, 57);
-            this.txtIdFlete.Name = "txtIdFlete";
-            this.txtIdFlete.Size = new System.Drawing.Size(129, 20);
-            this.txtIdFlete.TabIndex = 247;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(93, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(333, 37);
-            this.label9.TabIndex = 246;
-            this.label9.Text = "Calculo de utilidades";
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(35, 6);
-            this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.label10.Size = new System.Drawing.Size(932, 507);
-            this.label10.TabIndex = 245;
+            this.gbGastos.Text = "Tipos de gastos";
+            this.gbGastos.Enter += new System.EventHandler(this.gbGastos_Enter);
+            // 
+            // gbProd
+            // 
+            this.gbProd.BackColor = System.Drawing.Color.White;
+            this.gbProd.Controls.Add(this.ibtnAggProd);
+            this.gbProd.Controls.Add(this.cmbProd);
+            this.gbProd.Controls.Add(this.mtxtProd);
+            this.gbProd.Controls.Add(this.nudProd);
+            this.gbProd.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbProd.Location = new System.Drawing.Point(15, 105);
+            this.gbProd.Name = "gbProd";
+            this.gbProd.Size = new System.Drawing.Size(493, 63);
+            this.gbProd.TabIndex = 275;
+            this.gbProd.TabStop = false;
+            this.gbProd.Text = "Producción";
+            // 
+            // ibtnAggProd
+            // 
+            this.ibtnAggProd.BackColor = System.Drawing.Color.YellowGreen;
+            this.ibtnAggProd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnAggProd.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.ibtnAggProd.IconColor = System.Drawing.Color.Black;
+            this.ibtnAggProd.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnAggProd.IconSize = 17;
+            this.ibtnAggProd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ibtnAggProd.Location = new System.Drawing.Point(327, 22);
+            this.ibtnAggProd.Name = "ibtnAggProd";
+            this.ibtnAggProd.Size = new System.Drawing.Size(139, 26);
+            this.ibtnAggProd.TabIndex = 278;
+            this.ibtnAggProd.Text = "Agregar";
+            this.ibtnAggProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ibtnAggProd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnAggProd.UseVisualStyleBackColor = false;
+            this.ibtnAggProd.Click += new System.EventHandler(this.ibtnAggProd_Click);
+            // 
+            // cmbProd
+            // 
+            this.cmbProd.Enabled = false;
+            this.cmbProd.FormattingEnabled = true;
+            this.cmbProd.Items.AddRange(new object[] {
+            "Sueldo de motorista",
+            "Sueldo de ayudantes",
+            "Combustible"});
+            this.cmbProd.Location = new System.Drawing.Point(25, 22);
+            this.cmbProd.Name = "cmbProd";
+            this.cmbProd.Size = new System.Drawing.Size(155, 23);
+            this.cmbProd.TabIndex = 260;
+            this.cmbProd.SelectedIndexChanged += new System.EventHandler(this.cmbProd_SelectedIndexChanged);
+            // 
+            // mtxtProd
+            // 
+            this.mtxtProd.Enabled = false;
+            this.mtxtProd.Location = new System.Drawing.Point(197, 22);
+            this.mtxtProd.Mask = "$###.##";
+            this.mtxtProd.Name = "mtxtProd";
+            this.mtxtProd.Size = new System.Drawing.Size(57, 23);
+            this.mtxtProd.TabIndex = 275;
+            // 
+            // nudProd
+            // 
+            this.nudProd.Enabled = false;
+            this.nudProd.Location = new System.Drawing.Point(270, 22);
+            this.nudProd.Name = "nudProd";
+            this.nudProd.Size = new System.Drawing.Size(38, 23);
+            this.nudProd.TabIndex = 276;
+            // 
+            // gbVarios
+            // 
+            this.gbVarios.BackColor = System.Drawing.Color.White;
+            this.gbVarios.Controls.Add(this.ibtnAggVarios);
+            this.gbVarios.Controls.Add(this.nudVarios);
+            this.gbVarios.Controls.Add(this.panel2);
+            this.gbVarios.Controls.Add(this.mtxtVarios);
+            this.gbVarios.Controls.Add(this.cmbVarios);
+            this.gbVarios.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbVarios.Location = new System.Drawing.Point(15, 185);
+            this.gbVarios.Name = "gbVarios";
+            this.gbVarios.Size = new System.Drawing.Size(493, 63);
+            this.gbVarios.TabIndex = 280;
+            this.gbVarios.TabStop = false;
+            this.gbVarios.Text = "Varios";
+            // 
+            // ibtnAggVarios
+            // 
+            this.ibtnAggVarios.BackColor = System.Drawing.Color.YellowGreen;
+            this.ibtnAggVarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnAggVarios.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.ibtnAggVarios.IconColor = System.Drawing.Color.Black;
+            this.ibtnAggVarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnAggVarios.IconSize = 17;
+            this.ibtnAggVarios.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ibtnAggVarios.Location = new System.Drawing.Point(327, 22);
+            this.ibtnAggVarios.Name = "ibtnAggVarios";
+            this.ibtnAggVarios.Size = new System.Drawing.Size(139, 26);
+            this.ibtnAggVarios.TabIndex = 279;
+            this.ibtnAggVarios.Text = "Agregar";
+            this.ibtnAggVarios.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ibtnAggVarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnAggVarios.UseVisualStyleBackColor = false;
+            this.ibtnAggVarios.Click += new System.EventHandler(this.ibtnAggVarios_Click);
+            // 
+            // nudVarios
+            // 
+            this.nudVarios.Enabled = false;
+            this.nudVarios.Location = new System.Drawing.Point(270, 22);
+            this.nudVarios.Name = "nudVarios";
+            this.nudVarios.Size = new System.Drawing.Size(38, 23);
+            this.nudVarios.TabIndex = 277;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.Location = new System.Drawing.Point(50, 44);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(0, 0);
+            this.panel2.TabIndex = 254;
+            // 
+            // mtxtVarios
+            // 
+            this.mtxtVarios.Enabled = false;
+            this.mtxtVarios.Location = new System.Drawing.Point(197, 22);
+            this.mtxtVarios.Mask = "$###.##";
+            this.mtxtVarios.Name = "mtxtVarios";
+            this.mtxtVarios.Size = new System.Drawing.Size(57, 23);
+            this.mtxtVarios.TabIndex = 274;
+            // 
+            // cmbVarios
+            // 
+            this.cmbVarios.Enabled = false;
+            this.cmbVarios.FormattingEnabled = true;
+            this.cmbVarios.Items.AddRange(new object[] {
+            "Parqueo",
+            "Hospedaje",
+            "Otros"});
+            this.cmbVarios.Location = new System.Drawing.Point(25, 22);
+            this.cmbVarios.Name = "cmbVarios";
+            this.cmbVarios.Size = new System.Drawing.Size(155, 23);
+            this.cmbVarios.TabIndex = 268;
+            this.cmbVarios.SelectedIndexChanged += new System.EventHandler(this.cmbVarios_SelectedIndexChanged);
             // 
             // pCamion
             // 
@@ -517,6 +240,92 @@
             this.pCamion.Size = new System.Drawing.Size(0, 0);
             this.pCamion.TabIndex = 254;
             // 
+            // gbCamion
+            // 
+            this.gbCamion.BackColor = System.Drawing.Color.White;
+            this.gbCamion.Controls.Add(this.ibtnAggCamion);
+            this.gbCamion.Controls.Add(this.mtxtCamion);
+            this.gbCamion.Controls.Add(this.cmbCamion);
+            this.gbCamion.Controls.Add(this.nudCamion);
+            this.gbCamion.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbCamion.Location = new System.Drawing.Point(15, 26);
+            this.gbCamion.Name = "gbCamion";
+            this.gbCamion.Size = new System.Drawing.Size(493, 63);
+            this.gbCamion.TabIndex = 274;
+            this.gbCamion.TabStop = false;
+            this.gbCamion.Text = "Camión";
+            // 
+            // ibtnAggCamion
+            // 
+            this.ibtnAggCamion.BackColor = System.Drawing.Color.YellowGreen;
+            this.ibtnAggCamion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnAggCamion.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.ibtnAggCamion.IconColor = System.Drawing.Color.Black;
+            this.ibtnAggCamion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnAggCamion.IconSize = 17;
+            this.ibtnAggCamion.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ibtnAggCamion.Location = new System.Drawing.Point(327, 22);
+            this.ibtnAggCamion.Name = "ibtnAggCamion";
+            this.ibtnAggCamion.Size = new System.Drawing.Size(139, 26);
+            this.ibtnAggCamion.TabIndex = 273;
+            this.ibtnAggCamion.Text = "Agregar";
+            this.ibtnAggCamion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ibtnAggCamion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnAggCamion.UseVisualStyleBackColor = false;
+            this.ibtnAggCamion.Click += new System.EventHandler(this.ibtnAggCamion_Click);
+            // 
+            // mtxtCamion
+            // 
+            this.mtxtCamion.Enabled = false;
+            this.mtxtCamion.Location = new System.Drawing.Point(197, 25);
+            this.mtxtCamion.Mask = "$000.00";
+            this.mtxtCamion.Name = "mtxtCamion";
+            this.mtxtCamion.Size = new System.Drawing.Size(57, 23);
+            this.mtxtCamion.TabIndex = 271;
+            // 
+            // cmbCamion
+            // 
+            this.cmbCamion.Enabled = false;
+            this.cmbCamion.FormattingEnabled = true;
+            this.cmbCamion.Items.AddRange(new object[] {
+            "Batería",
+            "Llantas",
+            "Cambio de aceite"});
+            this.cmbCamion.Location = new System.Drawing.Point(25, 24);
+            this.cmbCamion.Name = "cmbCamion";
+            this.cmbCamion.Size = new System.Drawing.Size(155, 23);
+            this.cmbCamion.TabIndex = 265;
+            this.cmbCamion.SelectedIndexChanged += new System.EventHandler(this.cmbCamion_SelectedIndexChanged);
+            // 
+            // nudCamion
+            // 
+            this.nudCamion.Enabled = false;
+            this.nudCamion.Location = new System.Drawing.Point(270, 26);
+            this.nudCamion.Name = "nudCamion";
+            this.nudCamion.Size = new System.Drawing.Size(38, 23);
+            this.nudCamion.TabIndex = 274;
+            // 
+            // ibtnLimpiar
+            // 
+            this.ibtnLimpiar.BackColor = System.Drawing.Color.Red;
+            this.ibtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnLimpiar.ForeColor = System.Drawing.SystemColors.Control;
+            this.ibtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Eraser;
+            this.ibtnLimpiar.IconColor = System.Drawing.SystemColors.Control;
+            this.ibtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnLimpiar.IconSize = 17;
+            this.ibtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ibtnLimpiar.Location = new System.Drawing.Point(19, 286);
+            this.ibtnLimpiar.Name = "ibtnLimpiar";
+            this.ibtnLimpiar.Size = new System.Drawing.Size(283, 26);
+            this.ibtnLimpiar.TabIndex = 270;
+            this.ibtnLimpiar.Text = "Limpiar todo";
+            this.ibtnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ibtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnLimpiar.UseVisualStyleBackColor = false;
+            this.ibtnLimpiar.Visible = false;
+            this.ibtnLimpiar.Click += new System.EventHandler(this.ibtnLimpiar_Click);
+            // 
             // ibtnEditar
             // 
             this.ibtnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -525,9 +334,9 @@
             this.ibtnEditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnEditar.IconSize = 17;
             this.ibtnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ibtnEditar.Location = new System.Drawing.Point(382, 225);
+            this.ibtnEditar.Location = new System.Drawing.Point(19, 254);
             this.ibtnEditar.Name = "ibtnEditar";
-            this.ibtnEditar.Size = new System.Drawing.Size(134, 21);
+            this.ibtnEditar.Size = new System.Drawing.Size(283, 26);
             this.ibtnEditar.TabIndex = 269;
             this.ibtnEditar.Text = "Editar";
             this.ibtnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -536,119 +345,215 @@
             this.ibtnEditar.Visible = false;
             this.ibtnEditar.Click += new System.EventHandler(this.ibtnEditar_Click);
             // 
-            // ibtnLimpiar
+            // ibtnGuardar
             // 
-            this.ibtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Eraser;
-            this.ibtnLimpiar.IconColor = System.Drawing.Color.Black;
-            this.ibtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnLimpiar.IconSize = 17;
-            this.ibtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ibtnLimpiar.Location = new System.Drawing.Point(242, 225);
-            this.ibtnLimpiar.Name = "ibtnLimpiar";
-            this.ibtnLimpiar.Size = new System.Drawing.Size(134, 21);
-            this.ibtnLimpiar.TabIndex = 270;
-            this.ibtnLimpiar.Text = "Limpiar todo";
-            this.ibtnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ibtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ibtnLimpiar.UseVisualStyleBackColor = true;
-            this.ibtnLimpiar.Visible = false;
-            this.ibtnLimpiar.Click += new System.EventHandler(this.ibtnLimpiar_Click);
+            this.ibtnGuardar.BackColor = System.Drawing.Color.White;
+            this.ibtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnGuardar.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
+            this.ibtnGuardar.IconColor = System.Drawing.Color.Black;
+            this.ibtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnGuardar.IconSize = 17;
+            this.ibtnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ibtnGuardar.Location = new System.Drawing.Point(19, 222);
+            this.ibtnGuardar.Name = "ibtnGuardar";
+            this.ibtnGuardar.Size = new System.Drawing.Size(283, 26);
+            this.ibtnGuardar.TabIndex = 244;
+            this.ibtnGuardar.Text = "Calcular";
+            this.ibtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ibtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnGuardar.UseVisualStyleBackColor = false;
+            this.ibtnGuardar.Click += new System.EventHandler(this.ibtnGuardar_Click);
+            // 
+            // dgvdata
+            // 
+            this.dgvdata.AllowUserToAddRows = false;
+            this.dgvdata.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.valorFlete,
+            this.totalGastos,
+            this.utilidadNeta,
+            this.porcentajeUtilidad});
+            this.dgvdata.Location = new System.Drawing.Point(40, 422);
+            this.dgvdata.MultiSelect = false;
+            this.dgvdata.Name = "dgvdata";
+            this.dgvdata.ReadOnly = true;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvdata.RowTemplate.Height = 28;
+            this.dgvdata.Size = new System.Drawing.Size(880, 59);
+            this.dgvdata.TabIndex = 250;
             // 
             // valorFlete
             // 
             this.valorFlete.HeaderText = "Valor de flete";
             this.valorFlete.Name = "valorFlete";
             this.valorFlete.ReadOnly = true;
-            this.valorFlete.Width = 198;
+            this.valorFlete.Width = 205;
             // 
             // totalGastos
             // 
             this.totalGastos.HeaderText = "Total de gastos";
             this.totalGastos.Name = "totalGastos";
             this.totalGastos.ReadOnly = true;
-            this.totalGastos.Width = 198;
+            this.totalGastos.Width = 205;
             // 
             // utilidadNeta
             // 
             this.utilidadNeta.HeaderText = "Utilidad neta";
             this.utilidadNeta.Name = "utilidadNeta";
             this.utilidadNeta.ReadOnly = true;
-            this.utilidadNeta.Width = 198;
+            this.utilidadNeta.Width = 205;
             // 
             // porcentajeUtilidad
             // 
             this.porcentajeUtilidad.HeaderText = "% de Utilidad";
             this.porcentajeUtilidad.Name = "porcentajeUtilidad";
             this.porcentajeUtilidad.ReadOnly = true;
-            this.porcentajeUtilidad.Width = 197;
+            this.porcentajeUtilidad.Width = 204;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Dubai", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(51, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(245, 45);
+            this.label9.TabIndex = 246;
+            this.label9.Text = "Calculo de utilidades";
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(-1, -1);
+            this.label10.Name = "label10";
+            this.label10.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.label10.Size = new System.Drawing.Size(955, 528);
+            this.label10.TabIndex = 245;
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // lbTotal
+            // 
+            this.lbTotal.FormattingEnabled = true;
+            this.lbTotal.ItemHeight = 15;
+            this.lbTotal.Location = new System.Drawing.Point(19, 26);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(283, 184);
+            this.lbTotal.TabIndex = 272;
+            // 
+            // gblist
+            // 
+            this.gblist.BackColor = System.Drawing.Color.White;
+            this.gblist.Controls.Add(this.lbTotal);
+            this.gblist.Controls.Add(this.ibtnLimpiar);
+            this.gblist.Controls.Add(this.ibtnGuardar);
+            this.gblist.Controls.Add(this.ibtnEditar);
+            this.gblist.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gblist.Location = new System.Drawing.Point(600, 78);
+            this.gblist.Name = "gblist";
+            this.gblist.Size = new System.Drawing.Size(320, 324);
+            this.gblist.TabIndex = 273;
+            this.gblist.TabStop = false;
+            this.gblist.Text = "Total de gastos";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.iconPictureBox1);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Location = new System.Drawing.Point(-1, -1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(955, 54);
+            this.panel1.TabIndex = 274;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Truck;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.Location = new System.Drawing.Point(13, 13);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox1.TabIndex = 247;
+            this.iconPictureBox1.TabStop = false;
             // 
             // frmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1003, 519);
-            this.Controls.Add(this.ibtnExcel);
+            this.ClientSize = new System.Drawing.Size(953, 524);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.gblist);
             this.Controls.Add(this.gbGastos);
-            this.Controls.Add(this.ibtnPDF);
             this.Controls.Add(this.dgvdata);
-            this.Controls.Add(this.gbValorflete);
-            this.Controls.Add(this.label26);
-            this.Controls.Add(this.txtIdFlete);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReportes";
-            this.Text = "frmReportes";
+            this.Text = "Calculo de Utilidades";
             this.gbGastos.ResumeLayout(false);
             this.gbGastos.PerformLayout();
+            this.gbProd.ResumeLayout(false);
+            this.gbProd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProd)).EndInit();
+            this.gbVarios.ResumeLayout(false);
+            this.gbVarios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVarios)).EndInit();
+            this.gbCamion.ResumeLayout(false);
+            this.gbCamion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCamion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).EndInit();
-            this.gbValorflete.ResumeLayout(false);
-            this.gbValorflete.PerformLayout();
+            this.gblist.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private FontAwesome.Sharp.IconButton ibtnExcel;
         private System.Windows.Forms.GroupBox gbGastos;
-        private System.Windows.Forms.ComboBox cbNoHosp;
-        private System.Windows.Forms.TextBox txtOtros;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox cbNoLlantas;
-        private System.Windows.Forms.TextBox txtHospedaje;
-        private System.Windows.Forms.TextBox txtParqueo;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cbNoAux;
-        private System.Windows.Forms.TextBox txtGas;
-        private System.Windows.Forms.TextBox txtAuxilar;
-        private System.Windows.Forms.TextBox txtMotorista;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtAceite;
-        private System.Windows.Forms.TextBox txtLlanta;
-        private System.Windows.Forms.TextBox txtBateria;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox cbVarios;
-        private System.Windows.Forms.CheckBox cbProd;
-        private System.Windows.Forms.CheckBox cbCamion;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbVarios;
+        private System.Windows.Forms.ComboBox cmbCamion;
+        private System.Windows.Forms.ComboBox cmbProd;
         private FontAwesome.Sharp.IconButton ibtnGuardar;
-        private FontAwesome.Sharp.IconButton ibtnPDF;
         private System.Windows.Forms.DataGridView dgvdata;
-        private System.Windows.Forms.GroupBox gbValorflete;
-        private System.Windows.Forms.TextBox textFleteMonto;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtIdFlete;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel pCamion;
         private FontAwesome.Sharp.IconButton ibtnLimpiar;
         private FontAwesome.Sharp.IconButton ibtnEditar;
+        private System.Windows.Forms.MaskedTextBox mtxtCamion;
+        private System.Windows.Forms.ListBox lbTotal;
+        private System.Windows.Forms.GroupBox gblist;
+        private System.Windows.Forms.MaskedTextBox mtxtVarios;
+        private System.Windows.Forms.MaskedTextBox mtxtProd;
+        private System.Windows.Forms.NumericUpDown nudVarios;
+        private System.Windows.Forms.NumericUpDown nudProd;
+        private System.Windows.Forms.NumericUpDown nudCamion;
+        private System.Windows.Forms.Panel panel1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconButton ibtnAggVarios;
+        private FontAwesome.Sharp.IconButton ibtnAggProd;
+        private FontAwesome.Sharp.IconButton ibtnAggCamion;
+        private System.Windows.Forms.GroupBox gbCamion;
+        private System.Windows.Forms.GroupBox gbProd;
+        private System.Windows.Forms.GroupBox gbVarios;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorFlete;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalGastos;
         private System.Windows.Forms.DataGridViewTextBoxColumn utilidadNeta;
