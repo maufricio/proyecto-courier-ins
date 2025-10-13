@@ -284,7 +284,7 @@
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Location = new System.Drawing.Point(29, 190);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(389, 455);
+            this.groupBox4.Size = new System.Drawing.Size(406, 455);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Informacion Flete";
@@ -301,11 +301,11 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(223, 382);
+            this.label11.Location = new System.Drawing.Point(208, 382);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(145, 16);
+            this.label11.Size = new System.Drawing.Size(154, 16);
             this.label11.TabIndex = 10;
-            this.label11.Text = "Hora y fecha de salida:";
+            this.label11.Text = "Hora y fecha de llegada:";
             // 
             // dateTimePicker1
             // 
@@ -320,7 +320,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 382);
+            this.label10.Location = new System.Drawing.Point(3, 382);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(145, 16);
             this.label10.TabIndex = 8;
@@ -431,12 +431,12 @@
             this.Hsalida,
             this.HDestino,
             this.Consideraciones});
-            this.dgvflete.Location = new System.Drawing.Point(432, 190);
+            this.dgvflete.Location = new System.Drawing.Point(441, 190);
             this.dgvflete.Name = "dgvflete";
             this.dgvflete.ReadOnly = true;
             this.dgvflete.RowHeadersWidth = 51;
             this.dgvflete.RowTemplate.Height = 24;
-            this.dgvflete.Size = new System.Drawing.Size(1239, 601);
+            this.dgvflete.Size = new System.Drawing.Size(1230, 601);
             this.dgvflete.TabIndex = 10;
             this.dgvflete.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvflete_CellClick);
             // 
