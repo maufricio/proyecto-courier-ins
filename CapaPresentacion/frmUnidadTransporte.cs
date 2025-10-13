@@ -52,7 +52,7 @@ namespace CapaPresentacion
                     item.Marca,
                     item.CapacidadToneladas,
                     item.AnioFabricacion,
-                    item.Estado == true ? 1:0,
+                    item.Estado == true ? 1 : 0,
                     item.Estado == true ? "Activo" : "Inactivo",
                     item.FechaRegistro.ToString("dd/MM/yyyy")
                 });
@@ -243,7 +243,7 @@ namespace CapaPresentacion
         {
             if (Convert.ToInt32(txtid.Text) != 0)
             {
-                if (MessageBox.Show("¿Desea eliminar la unidad de transporte?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea eliminar/desactivar la unidad de transporte?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
                     UnidadTransporte objunidad = new UnidadTransporte()
@@ -255,13 +255,26 @@ namespace CapaPresentacion
 
                     if (respuesta)
                     {
-                        dgvData.Rows.RemoveAt(Convert.ToInt32(txtindice.Text));
+                        if (mensaje == "ELIMINAR")
+                        {
+                            // Eliminación física: quitar la fila
+                            dgvData.Rows.RemoveAt(Convert.ToInt32(txtindice.Text));
+                            MessageBox.Show("Unidad eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else if (mensaje == "DESACTIVAR")
+                        {
+                            // Desactivación: actualizar la fila
+                            DataGridViewRow row = dgvData.Rows[Convert.ToInt32(txtindice.Text)];
+                            row.Cells["EstadoValor"].Value = "0";
+                            row.Cells["Estado"].Value = "Inactivo";
+                            MessageBox.Show("Unidad desactivada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
                         Limpiar();
-                        MessageBox.Show("Unidad eliminada correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }

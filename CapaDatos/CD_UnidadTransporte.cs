@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-
 using CapaEntidad;
 
 namespace CapaDatos
@@ -136,11 +135,57 @@ namespace CapaDatos
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    SqlCommand cmd = new SqlCommand("DELETE FROM UNIDAD_TRANSPORTE WHERE IdUnidad = @id", oconexion);
-                    cmd.Parameters.AddWithValue("@id", obj.IdUnidad);
-                    cmd.CommandType = CommandType.Text;
                     oconexion.Open();
-                    respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+
+                    // Verificar si tiene fletes asociados
+                    SqlCommand cmdVerificarTotal = new SqlCommand(
+                        "SELECT COUNT(*) FROM FLETE WHERE IdUnidad = @id", oconexion);
+                    cmdVerificarTotal.Parameters.AddWithValue("@id", obj.IdUnidad);
+
+                    int totalFletes = (int)cmdVerificarTotal.ExecuteScalar();
+
+                    if (totalFletes == 0)
+                    {
+                        // NO tiene fletes: ELIMINAR físicamente
+                        SqlCommand cmdEliminar = new SqlCommand(
+                            "DELETE FROM UNIDAD_TRANSPORTE WHERE IdUnidad = @id", oconexion);
+                        cmdEliminar.Parameters.AddWithValue("@id", obj.IdUnidad);
+                        respuesta = cmdEliminar.ExecuteNonQuery() > 0;
+
+                        if (respuesta)
+                        {
+                            Mensaje = "ELIMINAR"; // Indicador para el formulario
+                        }
+                    }
+                    else
+                    {
+                        // SÍ tiene fletes: verificar si tiene fletes activos
+                        SqlCommand cmdVerificarActivos = new SqlCommand(
+                            "SELECT COUNT(*) FROM FLETE WHERE IdUnidad = @id AND IdEstado != 3", oconexion);
+                        cmdVerificarActivos.Parameters.AddWithValue("@id", obj.IdUnidad);
+
+                        int fletesActivos = (int)cmdVerificarActivos.ExecuteScalar();
+
+                        if (fletesActivos > 0)
+                        {
+                            // Tiene fletes NO terminados: NO PERMITIR
+                            Mensaje = "No se puede desactivar esta unidad porque tiene fletes en proceso, programados o con incidencias. Debe esperar a que todos sus fletes estén terminados.";
+                            respuesta = false;
+                        }
+                        else
+                        {
+                            // Solo tiene fletes terminados: DESACTIVAR
+                            SqlCommand cmdDesactivar = new SqlCommand(
+                                "UPDATE UNIDAD_TRANSPORTE SET Estado = 0 WHERE IdUnidad = @id", oconexion);
+                            cmdDesactivar.Parameters.AddWithValue("@id", obj.IdUnidad);
+                            respuesta = cmdDesactivar.ExecuteNonQuery() > 0;
+
+                            if (respuesta)
+                            {
+                                Mensaje = "DESACTIVAR"; // Indicador para el formulario
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
