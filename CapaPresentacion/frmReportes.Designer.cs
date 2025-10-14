@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbGastos = new System.Windows.Forms.GroupBox();
             this.gbProd = new System.Windows.Forms.GroupBox();
             this.ibtnAggProd = new FontAwesome.Sharp.IconButton();
@@ -62,6 +62,7 @@
             this.gblist = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.ibtnFinalizar = new FontAwesome.Sharp.IconButton();
             this.gbGastos.SuspendLayout();
             this.gbProd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudProd)).BeginInit();
@@ -83,7 +84,7 @@
             this.gbGastos.Controls.Add(this.pCamion);
             this.gbGastos.Controls.Add(this.gbCamion);
             this.gbGastos.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbGastos.Location = new System.Drawing.Point(40, 104);
+            this.gbGastos.Location = new System.Drawing.Point(40, 95);
             this.gbGastos.Name = "gbGastos";
             this.gbGastos.Size = new System.Drawing.Size(524, 280);
             this.gbGastos.TabIndex = 252;
@@ -358,7 +359,7 @@
             this.ibtnGuardar.Name = "ibtnGuardar";
             this.ibtnGuardar.Size = new System.Drawing.Size(283, 26);
             this.ibtnGuardar.TabIndex = 244;
-            this.ibtnGuardar.Text = "Calcular";
+            this.ibtnGuardar.Text = "Calcular utilidades";
             this.ibtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ibtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnGuardar.UseVisualStyleBackColor = false;
@@ -368,28 +369,28 @@
             // 
             this.dgvdata.AllowUserToAddRows = false;
             this.dgvdata.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.valorFlete,
             this.totalGastos,
             this.utilidadNeta,
             this.porcentajeUtilidad});
-            this.dgvdata.Location = new System.Drawing.Point(40, 422);
+            this.dgvdata.Location = new System.Drawing.Point(40, 414);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvdata.RowTemplate.Height = 28;
             this.dgvdata.Size = new System.Drawing.Size(880, 59);
             this.dgvdata.TabIndex = 250;
@@ -399,28 +400,28 @@
             this.valorFlete.HeaderText = "Valor de flete";
             this.valorFlete.Name = "valorFlete";
             this.valorFlete.ReadOnly = true;
-            this.valorFlete.Width = 205;
+            this.valorFlete.Width = 209;
             // 
             // totalGastos
             // 
             this.totalGastos.HeaderText = "Total de gastos";
             this.totalGastos.Name = "totalGastos";
             this.totalGastos.ReadOnly = true;
-            this.totalGastos.Width = 205;
+            this.totalGastos.Width = 209;
             // 
             // utilidadNeta
             // 
             this.utilidadNeta.HeaderText = "Utilidad neta";
             this.utilidadNeta.Name = "utilidadNeta";
             this.utilidadNeta.ReadOnly = true;
-            this.utilidadNeta.Width = 205;
+            this.utilidadNeta.Width = 209;
             // 
             // porcentajeUtilidad
             // 
             this.porcentajeUtilidad.HeaderText = "% de Utilidad";
             this.porcentajeUtilidad.Name = "porcentajeUtilidad";
             this.porcentajeUtilidad.ReadOnly = true;
-            this.porcentajeUtilidad.Width = 204;
+            this.porcentajeUtilidad.Width = 208;
             // 
             // label9
             // 
@@ -430,9 +431,9 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(51, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(245, 45);
+            this.label9.Size = new System.Drawing.Size(210, 45);
             this.label9.TabIndex = 246;
-            this.label9.Text = "Calculo de utilidades";
+            this.label9.Text = "Calculo de gastos";
             // 
             // label10
             // 
@@ -442,7 +443,7 @@
             this.label10.Location = new System.Drawing.Point(-1, -1);
             this.label10.Name = "label10";
             this.label10.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.label10.Size = new System.Drawing.Size(955, 528);
+            this.label10.Size = new System.Drawing.Size(962, 551);
             this.label10.TabIndex = 245;
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
@@ -463,7 +464,7 @@
             this.gblist.Controls.Add(this.ibtnGuardar);
             this.gblist.Controls.Add(this.ibtnEditar);
             this.gblist.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gblist.Location = new System.Drawing.Point(600, 78);
+            this.gblist.Location = new System.Drawing.Point(600, 69);
             this.gblist.Name = "gblist";
             this.gblist.Size = new System.Drawing.Size(320, 324);
             this.gblist.TabIndex = 273;
@@ -477,7 +478,7 @@
             this.panel1.Controls.Add(this.label9);
             this.panel1.Location = new System.Drawing.Point(-1, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(955, 54);
+            this.panel1.Size = new System.Drawing.Size(965, 54);
             this.panel1.TabIndex = 274;
             // 
             // iconPictureBox1
@@ -492,11 +493,32 @@
             this.iconPictureBox1.TabIndex = 247;
             this.iconPictureBox1.TabStop = false;
             // 
+            // ibtnFinalizar
+            // 
+            this.ibtnFinalizar.BackColor = System.Drawing.Color.DarkGreen;
+            this.ibtnFinalizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnFinalizar.ForeColor = System.Drawing.Color.White;
+            this.ibtnFinalizar.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.ibtnFinalizar.IconColor = System.Drawing.Color.White;
+            this.ibtnFinalizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnFinalizar.IconSize = 17;
+            this.ibtnFinalizar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ibtnFinalizar.Location = new System.Drawing.Point(758, 488);
+            this.ibtnFinalizar.Name = "ibtnFinalizar";
+            this.ibtnFinalizar.Size = new System.Drawing.Size(162, 28);
+            this.ibtnFinalizar.TabIndex = 273;
+            this.ibtnFinalizar.Text = "Guardar y finalizar flete";
+            this.ibtnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ibtnFinalizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnFinalizar.UseVisualStyleBackColor = false;
+            this.ibtnFinalizar.Click += new System.EventHandler(this.ibtnFinalizar_Click);
+            // 
             // frmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 524);
+            this.ClientSize = new System.Drawing.Size(957, 546);
+            this.Controls.Add(this.ibtnFinalizar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gblist);
             this.Controls.Add(this.gbGastos);
@@ -554,6 +576,7 @@
         private System.Windows.Forms.GroupBox gbProd;
         private System.Windows.Forms.GroupBox gbVarios;
         private System.Windows.Forms.Panel panel2;
+        private FontAwesome.Sharp.IconButton ibtnFinalizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorFlete;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalGastos;
         private System.Windows.Forms.DataGridViewTextBoxColumn utilidadNeta;

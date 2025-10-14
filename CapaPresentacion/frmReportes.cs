@@ -24,17 +24,18 @@ namespace CapaPresentacion
         private List<CalculosUtil> _listaGastos = new List<CalculosUtil>();
 
         // Variable para saber si estamos editando
-        private bool _modoEdicion = false;
         private int _indiceEdicion = -1;
-
-        // Variable para controlar si ya se guardaron los datos
-        private bool _datosGuardados = false;
 
         public frmReportes()
         {
             InitializeComponent();
-            _idFleteActual = 2; // ID de flete de ejemplo
+            /*-----------------------------------------*/
+            /*-----------------------------------------*/
+            //BORRAR ESTAS DOS LINEAS DESPUÉS DE UNIRLO CON FLETE
+            _idFleteActual = 2;
             _montoFleteActual = 80.00m;
+            /*-----------------------------------------*/
+            /*-----------------------------------------*/
             InicializarComboBoxes();
         }
 
@@ -84,73 +85,6 @@ namespace CapaPresentacion
                 return;
             }
 
-            // Si ya se calculó antes, preguntar si quiere recalcular
-            if (_datosGuardados)
-            {
-                DialogResult result = MessageBox.Show(
-                    "Los datos ya fueron guardados anteriormente.\n\n" +
-                    "¿Desea recalcular con los datos actuales?\n\n" +
-                    "Esto eliminará los gastos anteriores de la base de datos y guardará los nuevos.",
-                    "Confirmar recálculo",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (result == DialogResult.No)
-                {
-                    return;
-                }
-
-                // Eliminar los gastos anteriores de la BD
-                CN_CalculosUtil objNegocio = new CN_CalculosUtil();
-                foreach (var gasto in _listaGastos.Where(g => g.IdGasto > 0).ToList())
-                {
-                    string mensajeEliminar;
-                    objNegocio.Eliminar(gasto, out mensajeEliminar);
-                }
-
-                // Resetear los IDs
-                foreach (var gasto in _listaGastos)
-                {
-                    gasto.IdGasto = 0;
-                }
-            }
-
-            // Guardar todos los gastos en la base de datos
-            CN_CalculosUtil objNegocioGuardar = new CN_CalculosUtil();
-            bool todosGuardados = true;
-            string mensajeError = "";
-
-            foreach (var gasto in _listaGastos)
-            {
-                // Solo guardar si no tiene ID (o sea, que no está guardado)
-                if (gasto.IdGasto == 0)
-                {
-                    string mensaje;
-                    int resultado = objNegocioGuardar.Guardar(gasto, out mensaje);
-
-                    if (resultado > 0)
-                    {
-                        // Asignar el ID generado al gasto
-                        gasto.IdGasto = resultado;
-                    }
-                    else
-                    {
-                        todosGuardados = false;
-                        mensajeError += mensaje + "\n";
-                    }
-                }
-            }
-
-            if (!todosGuardados)
-            {
-                MessageBox.Show("Algunos gastos no pudieron guardarse:\n" + mensajeError,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Marcar que los datos ya están guardados
-            _datosGuardados = true;
-
             // Calcular totales
             decimal totalGastos = _listaGastos.Sum(g => g.Monto);
             decimal utilidadNeta = _montoFleteActual - totalGastos;
@@ -171,7 +105,7 @@ namespace CapaPresentacion
             ibtnEditar.Visible = true;
             ibtnLimpiar.Visible = true;
 
-            MessageBox.Show("Cálculos realizados y datos guardados exitosamente", "Éxito",
+            MessageBox.Show("Cálculos realizados correctamente", "Éxito",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -185,24 +119,9 @@ namespace CapaPresentacion
 
             if (result == DialogResult.Yes)
             {
-                // Si ya se guardaron, eliminar de la BD
-                if (_datosGuardados)
-                {
-                    CN_CalculosUtil objNegocio = new CN_CalculosUtil();
-                    foreach (var gasto in _listaGastos)
-                    {
-                        if (gasto.IdGasto > 0)
-                        {
-                            string mensaje;
-                            objNegocio.Eliminar(gasto, out mensaje);
-                        }
-                    }
-                }
-
                 _listaGastos.Clear();
                 lbTotal.Items.Clear();
                 dgvdata.Rows.Clear();
-                _datosGuardados = false;
 
                 // Limpiar todos los campos
                 LimpiarTodosLosCampos();
@@ -249,18 +168,19 @@ namespace CapaPresentacion
             }
 
             _indiceEdicion = lbTotal.SelectedIndex;
-            _modoEdicion = true;
 
             // Obtener el gasto seleccionado
             CalculosUtil gastoSeleccionado = _listaGastos[_indiceEdicion];
+
+            // Calcular el monto unitario
+            decimal montoUnitario = gastoSeleccionado.Monto / gastoSeleccionado.Cantidad;
 
             // Cargar los datos en los campos correspondientes
             switch (gastoSeleccionado.TipoGasto)
             {
                 case "Camión":
                     cmbCamion.Text = gastoSeleccionado.Concepto;
-                    mtxtCamion.Text = (gastoSeleccionado.Monto / gastoSeleccionado.Cantidad).ToString("F2");
-                    mtxtCamion.Enabled = true;
+                    CargarMontoEnMaskedTextBox(mtxtCamion, montoUnitario);
                     if (gastoSeleccionado.Cantidad > 1)
                     {
                         nudCamion.Value = gastoSeleccionado.Cantidad;
@@ -269,8 +189,7 @@ namespace CapaPresentacion
                     break;
                 case "Producción":
                     cmbProd.Text = gastoSeleccionado.Concepto;
-                    mtxtProd.Text = (gastoSeleccionado.Monto / gastoSeleccionado.Cantidad).ToString("F2");
-                    mtxtProd.Enabled = true;
+                    CargarMontoEnMaskedTextBox(mtxtProd, montoUnitario);
                     if (gastoSeleccionado.Cantidad > 1)
                     {
                         nudProd.Value = gastoSeleccionado.Cantidad;
@@ -279,8 +198,7 @@ namespace CapaPresentacion
                     break;
                 case "Varios":
                     cmbVarios.Text = gastoSeleccionado.Concepto;
-                    mtxtVarios.Text = (gastoSeleccionado.Monto / gastoSeleccionado.Cantidad).ToString("F2");
-                    mtxtVarios.Enabled = true;
+                    CargarMontoEnMaskedTextBox(mtxtVarios, montoUnitario);
                     if (gastoSeleccionado.Cantidad > 1)
                     {
                         nudVarios.Value = gastoSeleccionado.Cantidad;
@@ -289,33 +207,32 @@ namespace CapaPresentacion
                     break;
             }
 
-            if (_datosGuardados && gastoSeleccionado.IdGasto > 0)
-            {
-                // Eliminar el gasto de la BD
-                CN_CalculosUtil objNegocio = new CN_CalculosUtil();
-                string mensaje;
-                bool resultado = objNegocio.Eliminar(gastoSeleccionado, out mensaje);
-
-                if (!resultado)
-                {
-                    MessageBox.Show("Error al eliminar el gasto de la base de datos:\n" + mensaje,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-
             // Remover el item de la lista para que pueda ser agregado nuevamente
             _listaGastos.RemoveAt(_indiceEdicion);
             lbTotal.Items.RemoveAt(_indiceEdicion);
-            _modoEdicion = false;
+            _indiceEdicion = -1;
 
-            // Si los datos estaban guardados, hay que recalcular
-            if (_datosGuardados)
-            {
-                MessageBox.Show("Gasto eliminado. Modifique los valores y agregue nuevamente, luego presione Calcular.",
-                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+             MessageBox.Show("Gasto cargado para edición. Modifique los valores y presione Agregar.",
+                 "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        }
+
+        private void CargarMontoEnMaskedTextBox(MaskedTextBox mtxt, decimal monto)
+        {
+            // Guardar la máscara original
+            string mascaraOriginal = mtxt.Mask;
+
+            // Quitar temporalmente la máscara
+            mtxt.Mask = "";
+
+            // Habilitar el control
+            mtxt.Enabled = true;
+
+            // Asignar el valor formateado
+            mtxt.Text = monto.ToString("0.00");
+
+            // Restaurar la máscara
+            mtxt.Mask = mascaraOriginal;
         }
 
         private void gbGastos_Enter(object sender, EventArgs e)
@@ -420,7 +337,7 @@ namespace CapaPresentacion
             AgregarGasto("Varios", cmbVarios, mtxtVarios, nudVarios);
         }
 
-        // MÉTODO GENÉRICO PARA AGREGAR GASTOS
+        // MÉTODO GENÉRICO PARA AGREGAR GASTOS (SOLO EN MEMORIA)
         private void AgregarGasto(string tipoGasto, ComboBox cmb, MaskedTextBox mtxt, NumericUpDown nud)
         {
             // Validar que se haya seleccionado un concepto
@@ -492,6 +409,104 @@ namespace CapaPresentacion
             mtxt.Enabled = false;
             nud.Value = 1;
             nud.Enabled = false;
+        }
+
+        private void ibtnCancelar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ibtnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (_listaGastos.Count == 0)
+            {
+                MessageBox.Show(
+                    "No hay gastos para guardar.\n\n" +
+                    "Debe agregar al menos un gasto antes de finalizar el flete.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Verificar si ya se calculó
+            if (dgvdata.Rows.Count == 0)
+            {
+                DialogResult resultCalcular = MessageBox.Show(
+                    "Aún no ha calculado las utilidades.\n\n" +
+                    "¿Desea calcular y guardar los gastos ahora?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (resultCalcular == DialogResult.No)
+                {
+                    return;
+                }
+
+                // Calcular antes de guardar
+                ibtnGuardar_Click(sender, e);
+            }
+
+            // Confirmar que desea finalizar
+            DialogResult result = MessageBox.Show(
+                "¿Está seguro de que desea finalizar este flete?\n\n" +
+                "Esta acción guardará y cerrará la ventana, no podrá volver acceder una vez finalizado.\n\n" +
+                "¿Desea continuar?",
+                "Confirmar Finalización",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            // Guardar todos los gastos en la base de datos
+            CN_CalculosUtil objNegocio = new CN_CalculosUtil();
+            bool todosGuardados = true;
+            string mensajeError = "";
+            int gastosGuardados = 0;
+
+            foreach (var gasto in _listaGastos)
+            {
+                string mensaje;
+                int resultado = objNegocio.Guardar(gasto, out mensaje);
+
+                if (resultado > 0)
+                {
+                    gastosGuardados++;
+                }
+                else
+                {
+                    todosGuardados = false;
+                    mensajeError += $"- {gasto.Concepto}: {mensaje}\n";
+                }
+            }
+
+            if (!todosGuardados)
+            {
+                MessageBox.Show(
+                    $"Algunos gastos no pudieron guardarse:\n\n{mensajeError}\n" +
+                    $"Gastos guardados exitosamente: {gastosGuardados} de {_listaGastos.Count}",
+                    "Error al guardar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show(
+                $"¡Flete finalizado exitosamente!\n\n" +
+                $"✓ Total de gastos guardados: {gastosGuardados}\n" +
+                $"✓ ID del Flete: {_idFleteActual}\n" +
+                $"✓ Utilidad calculada y registrada correctamente",
+                "Éxito",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            // Cerrar el formulario
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
