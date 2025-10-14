@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D17BBD10-B03D-4126-ABFB-0B8B208C3E12}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>CapaPresentacion</RootNamespace>
     <AssemblyName>SistemaVentasDemo</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -34,7 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logocanal.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -111,12 +116,6 @@
     <Compile Include="frmUtilidadesFletes.Designer.cs">
       <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modales\mdCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modales\mdCliente.Designer.cs">
-      <DependentUpon>mdCliente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modales\mdclientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,12 +139,6 @@
     </Compile>
     <Compile Include="Modales\mdmotoristas.Designer.cs">
       <DependentUpon>mdmotoristas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modales\mdProveedor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modales\mdProveedor.Designer.cs">
-      <DependentUpon>mdProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Modales\mdtransporte.cs">
       <SubType>Form</SubType>
@@ -172,9 +165,6 @@
     <EmbeddedResource Include="frmUtilidadesFletes.resx">
       <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modales\mdCliente.resx">
-      <DependentUpon>mdCliente.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdclientes.resx">
       <DependentUpon>mdclientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,9 +176,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdmotoristas.resx">
       <DependentUpon>mdmotoristas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modales\mdProveedor.resx">
-      <DependentUpon>mdProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdtransporte.resx">
       <DependentUpon>mdtransporte.cs</DependentUpon>
@@ -220,6 +207,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
+      <Project>{563f60c8-e2fb-4f83-b355-010b705cd14f}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
       <Project>{e4fdc1a1-483f-44a0-a328-596d29eb7629}</Project>
       <Name>CapaEntidad</Name>

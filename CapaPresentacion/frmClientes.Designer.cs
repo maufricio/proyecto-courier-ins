@@ -1,5 +1,7 @@
-﻿namespace CapaPresentacion
+﻿
+namespace CapaPresentacion
 {
+
     partial class frmClientes
     {
         /// <summary>
