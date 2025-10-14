@@ -513,7 +513,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmMotorista";
             this.Text = "frmUsuarios";
-            this.Load += new System.EventHandler(this.frmUsuarios_Load);
+            this.Load += new System.EventHandler(this.frmMotorista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
