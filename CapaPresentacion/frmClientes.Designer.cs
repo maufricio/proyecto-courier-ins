@@ -1,4 +1,6 @@
-﻿namespace CapaPresentacion
+﻿using FontAwesome.Sharp;
+
+namespace CapaPresentacion
 {
     partial class frmClientes
     {
