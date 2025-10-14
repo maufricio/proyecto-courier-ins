@@ -25,6 +25,7 @@ namespace CapaPresentacion
 
         private void frmMotorista_Load(object sender, EventArgs e)
         {
+            
             CargarMotoristas();
 
             cboestado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
@@ -32,6 +33,17 @@ namespace CapaPresentacion
             cboestado.DisplayMember = "Texto";
             cboestado.ValueMember = "Valor";
             cboestado.SelectedIndex = 0;
+
+            foreach (DataGridViewColumn columna in dgvdata.Columns)
+            {
+                if (columna.Visible == true && columna.Name != "btnseleccionar")
+                {
+                    cbobusqueda.Items.Add(new OpcionCombo() { Valor = columna.Name, Texto = columna.HeaderText });
+                }
+            }
+            cbobusqueda.DisplayMember = "Texto";
+            cbobusqueda.ValueMember = "Valor";
+            cbobusqueda.SelectedIndex = 0;
         }
         //Corrected
 
@@ -45,6 +57,7 @@ namespace CapaPresentacion
             foreach (Motorista item in lista)
             {
                 dgvdata.Rows.Add(new object[] {
+                    "",
                     item.IdMotorista,
                     item.NombreMotorista,
                     item.Direccion,
@@ -81,7 +94,7 @@ namespace CapaPresentacion
                 if (idmotoristagenerado != 0)
                 {
 
-                    dgvdata.Rows.Add(new object[] {idmotoristagenerado,txtnombrecompleto.Text,txtdireccion.Text,txtcorreo.Text,txttelefono.Text,txtperfilsocial.Text,
+                    dgvdata.Rows.Add(new object[] {"",idmotoristagenerado,txtnombrecompleto.Text,txtdireccion.Text,txtcorreo.Text,txttelefono.Text,txtperfilsocial.Text,
                 
                         ((OpcionCombo)cboestado.SelectedItem).Valor.ToString(),
                         
@@ -103,7 +116,7 @@ namespace CapaPresentacion
                 if (resultado)
                 {
                     DataGridViewRow row = dgvdata.Rows[Convert.ToInt32(txtindice.Text)];
-                    row.Cells["Id"].Value = txtid.Text;                    
+                    row.Cells["IdMotorista"].Value = txtid.Text;                    
                     row.Cells["NombreCompleto"].Value = txtnombrecompleto.Text;
                     row.Cells["Direccion"].Value = txtdireccion.Text;
                     row.Cells["Correo"].Value = txtcorreo.Text;
@@ -173,7 +186,7 @@ namespace CapaPresentacion
                 {
 
                     txtindice.Text = indice.ToString();
-                    txtid.Text = dgvdata.Rows[indice].Cells["Id"].Value.ToString();                    
+                    txtid.Text = dgvdata.Rows[indice].Cells["IdMotorista"].Value.ToString();                    
                     txtnombrecompleto.Text = dgvdata.Rows[indice].Cells["NombreCompleto"].Value.ToString();
                     txtdireccion.Text = dgvdata.Rows[indice].Cells["Direccion"].Value.ToString();
                     txtcorreo.Text = dgvdata.Rows[indice].Cells["Correo"].Value.ToString();

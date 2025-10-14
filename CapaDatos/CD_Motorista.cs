@@ -23,7 +23,7 @@ namespace CapaDatos
                 {
 
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdMotorista,NombreMotorista,Direccion,Correo,Telefono,PefilSocial,Estado,FechaRegistro from MOTORISTA");
+                    query.AppendLine("select IdMotorista,NombreMotorista,Direccion,Correo,Telefono,PerfilSocial,Estado,FechaRegistro from MOTORISTA");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
                     cmd.CommandType = CommandType.Text;
                     oconexion.Open();
