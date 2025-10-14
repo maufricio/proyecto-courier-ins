@@ -25,42 +25,37 @@ namespace CapaPresentacion
 
         private void frmMotorista_Load(object sender, EventArgs e)
         {
+            CargarMotoristas();
+
             cboestado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
             cboestado.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
             cboestado.DisplayMember = "Texto";
             cboestado.ValueMember = "Valor";
             cboestado.SelectedIndex = 0;
-            
-
-
-            foreach (DataGridViewColumn columna in dgvdata.Columns)
-            {
-
-                if (columna.Visible == true && columna.Name != "btnseleccionar")
-                {
-                    cbobusqueda.Items.Add(new OpcionCombo() { Valor = columna.Name, Texto = columna.HeaderText });
-                }
-            }
-            cbobusqueda.DisplayMember = "Texto";
-            cbobusqueda.ValueMember = "Valor";
-            cbobusqueda.SelectedIndex = 0;
-
-
-
-            //MOSTRAR TODOS LOS Motoristas
-            List<Motorista> listaMotorista = new CN_Motorista().Listar();
-
-            foreach (Motorista item in listaMotorista)
-            {
-
-                dgvdata.Rows.Add(new object[] {"",item.IdMotorista ,item.NombreMotorista,item.Direccion,item.Correo,item.Telefono,item.PerfilSocial,item.FechaRegistro,
-                    item.Estado == true ? 1 : 0 ,
-                    item.Estado == true ? "Activo" : "No Activo"
-                });
-            }
-
         }
         //Corrected
+
+
+
+        private void CargarMotoristas()
+        {
+            List<Motorista> lista = new CN_Motorista().Listar();
+            dgvdata.Rows.Clear();
+
+            foreach (Motorista item in lista)
+            {
+                dgvdata.Rows.Add(new object[] {
+                    item.IdMotorista,
+                    item.NombreMotorista,
+                    item.Direccion,
+                    item.Correo,
+                    item.Telefono,
+                    item.PerfilSocial,
+                    item.Estado == true ? 1 : 0 ,
+                    item.FechaRegistro,
+                });
+            }
+        }
 
 
         private void btnguardar_Click(object sender, EventArgs e)
@@ -86,10 +81,10 @@ namespace CapaPresentacion
                 if (idmotoristagenerado != 0)
                 {
 
-                    dgvdata.Rows.Add(new object[] {"",idmotoristagenerado,txtnombrecompleto.Text,txtdireccion.Text,txtcorreo.Text,txttelefono.Text,txtperfilsocial.Text,txtfecharegistro.Text,
+                    dgvdata.Rows.Add(new object[] {idmotoristagenerado,txtnombrecompleto.Text,txtdireccion.Text,txtcorreo.Text,txttelefono.Text,txtperfilsocial.Text,
                 
                         ((OpcionCombo)cboestado.SelectedItem).Valor.ToString(),
-                        ((OpcionCombo)cboestado.SelectedItem).Texto.ToString()
+                        
                     });
 
                     Limpiar();
@@ -115,7 +110,7 @@ namespace CapaPresentacion
                     row.Cells["Telefono"].Value = txttelefono.Text;
                     row.Cells["PerfilSocial"].Value = txtperfilsocial.Text;
                     row.Cells["FechaRegistro"].Value = txtfecharegistro.Text;                    
-                    row.Cells["EstadoValor"].Value = ((OpcionCombo)cboestado.SelectedItem).Valor.ToString();
+                    //row.Cells["EstadoValor"].Value = ((OpcionCombo)cboestado.SelectedItem).Valor.ToString();
                     row.Cells["Estado"].Value = ((OpcionCombo)cboestado.SelectedItem).Texto.ToString();
 
                     Limpiar();
@@ -182,20 +177,12 @@ namespace CapaPresentacion
                     txtnombrecompleto.Text = dgvdata.Rows[indice].Cells["NombreCompleto"].Value.ToString();
                     txtdireccion.Text = dgvdata.Rows[indice].Cells["Direccion"].Value.ToString();
                     txtcorreo.Text = dgvdata.Rows[indice].Cells["Correo"].Value.ToString();
-                    txttelefono.Text = dgvdata.Rows[indice].Cells["Clave"].Value.ToString();
-                    txtperfilsocial.Text = dgvdata.Rows[indice].Cells["Telefono"].Value.ToString();
+                    txttelefono.Text = dgvdata.Rows[indice].Cells["Telefono"].Value.ToString();
+                    txtperfilsocial.Text = dgvdata.Rows[indice].Cells["PerfilSocial"].Value.ToString();
                     txtfecharegistro.Text = dgvdata.Rows[indice].Cells["FechaRegistro"].Value.ToString();                  
 
 
-                    foreach (OpcionCombo oc in cboestado.Items)
-                    {
-                        if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(dgvdata.Rows[indice].Cells["EstadoValor"].Value))
-                        {
-                            int indice_combo = cboestado.Items.IndexOf(oc);
-                            cboestado.SelectedIndex = indice_combo;
-                            break;
-                        }
-                    }
+                    
 
 
                 }

@@ -164,7 +164,7 @@ namespace CapaDatos
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
 
-                    SqlCommand cmd = new SqlCommand("delete from cliente where IdMotorista = @id", oconexion);
+                    SqlCommand cmd = new SqlCommand("delete from MOTORISTA where IdMotorista = @id", oconexion);
                     cmd.Parameters.AddWithValue("@id", obj.IdMotorista);
                     cmd.CommandType = CommandType.Text;
                     oconexion.Open();
