@@ -87,11 +87,111 @@
     <Compile Include="frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmdashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmdashboard.Designer.cs">
+      <DependentUpon>frmdashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFlete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFlete.Designer.cs">
+      <DependentUpon>frmFlete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnidadTransporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUnidadTransporte.Designer.cs">
+      <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUtilidadesFletes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUtilidadesFletes.Designer.cs">
+      <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdCliente.Designer.cs">
+      <DependentUpon>mdCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdclientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdclientes.Designer.cs">
+      <DependentUpon>mdclientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdfletesprogramado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdfletesprogramado.Designer.cs">
+      <DependentUpon>mdfletesprogramado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdfletesqueja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdfletesqueja.Designer.cs">
+      <DependentUpon>mdfletesqueja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdmotoristas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdmotoristas.Designer.cs">
+      <DependentUpon>mdmotoristas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdProveedor.Designer.cs">
+      <DependentUpon>mdProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdtransporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdtransporte.Designer.cs">
+      <DependentUpon>mdtransporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades\GeneradorPDFUtilidades.cs" />
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmdashboard.resx">
+      <DependentUpon>frmdashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFlete.resx">
+      <DependentUpon>frmFlete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUnidadTransporte.resx">
+      <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUtilidadesFletes.resx">
+      <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdCliente.resx">
+      <DependentUpon>mdCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdclientes.resx">
+      <DependentUpon>mdclientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdfletesprogramado.resx">
+      <DependentUpon>mdfletesprogramado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdfletesqueja.resx">
+      <DependentUpon>mdfletesqueja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdmotoristas.resx">
+      <DependentUpon>mdmotoristas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdProveedor.resx">
+      <DependentUpon>mdProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdtransporte.resx">
+      <DependentUpon>mdtransporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -151,8 +251,6 @@
   <ItemGroup>
     <Content Include="logocanal.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modales\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

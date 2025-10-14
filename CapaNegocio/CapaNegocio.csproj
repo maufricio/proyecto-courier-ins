@@ -43,6 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Cliente.cs" />
+    <Compile Include="CN_Estado.cs" />
+    <Compile Include="CN_Flete.cs" />
+    <Compile Include="CN_Motorista.cs" />
+    <Compile Include="CN_Transporte.cs" />
+    <Compile Include="CN_UnidadTransporte.cs" />
+    <Compile Include="CN_UtilidadFlete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
