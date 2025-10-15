@@ -181,8 +181,12 @@ namespace CapaPresentacion
             if (idFleteSeleccionado > 0)
             {
                 resultado = this.cn_flete.Editar(objFlete, out mensaje);
-                if(objFlete.oEstado.IdEstado == 3 || objFlete.oEstado.IdEstado == 4 || objFlete.oEstado.IdEstado == 5)
-                    new frmReportes().Show();
+                if (objFlete.oEstado.IdEstado == 3 || objFlete.oEstado.IdEstado == 4 || objFlete.oEstado.IdEstado == 5)
+                {
+                    decimal montoFlete = objFlete.Monto;
+                    frmReportes frm = new frmReportes(idFleteSeleccionado, montoFlete);
+                    frm.ShowDialog();
+                }
             }
             else
             {
