@@ -9,11 +9,12 @@ namespace CapaEntidad
     public class Motorista
     {
         public int IdMotorista { get; set; }
-        public string NombreM { get; set; }
+        public string NombreMotorista { get; set; }
         public string Direccion { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-        public string Psocial { get; set; }
+        public string PerfilSocial { get; set; }
         public bool Estado { get; set; }
+        public string FechaRegistro { get; set; }
     }
 }

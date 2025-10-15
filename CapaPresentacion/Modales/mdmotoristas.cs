@@ -46,7 +46,7 @@ namespace CapaPresentacion.Modales
 
             foreach (Motorista item in lista)
             {
-                dgvmotorista.Rows.Add(new object[] { item.IdMotorista, item.NombreM, item.Correo });
+                dgvmotorista.Rows.Add(new object[] { item.IdMotorista, item.NombreMotorista, item.Correo });
             }
         }
 
@@ -89,7 +89,7 @@ namespace CapaPresentacion.Modales
                 _Motorista = new Motorista()
                 {
                     IdMotorista = Convert.ToInt32(dgvmotorista.Rows[iRow].Cells["IdMotorista"].Value.ToString()),
-                    NombreM = dgvmotorista.Rows[iRow].Cells["NombreMotorista"].Value.ToString(),
+                    NombreMotorista = dgvmotorista.Rows[iRow].Cells["NombreMotorista"].Value.ToString(),
                     Correo = dgvmotorista.Rows[iRow].Cells["Correo"].Value.ToString()
                 };
 

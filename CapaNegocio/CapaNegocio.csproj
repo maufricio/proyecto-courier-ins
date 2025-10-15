@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CN_CalculosUtil.cs" />
     <Compile Include="CN_Cliente.cs" />
     <Compile Include="CN_Estado.cs" />
     <Compile Include="CN_Flete.cs" />

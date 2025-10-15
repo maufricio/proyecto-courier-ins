@@ -16,9 +16,12 @@ namespace CapaPresentacion
 {
     public partial class frmFlete : Form
     {
+        private CN_Flete cn_flete;
+
         public frmFlete()
         {
             InitializeComponent();
+            this.cn_flete = new CN_Flete();
         }
 
         private int idFleteSeleccionado = 0;
@@ -50,7 +53,7 @@ namespace CapaPresentacion
                 dgvflete.Columns.Add(btnEliminar);
             }
 
-            List<Flete> lista = new CN_Flete().Listar();
+            List<Flete> lista = this.cn_flete.Listar();
 
             foreach (Flete item in lista)
             {
@@ -61,7 +64,7 @@ namespace CapaPresentacion
                     item.oTransporte.IdUnidad,         // 3
                     item.oEstado.IdEstado,             // 4
                     item.oCliente.NombreCliente,       // 5
-                    item.oMotorista.NombreM,           // 6
+                    item.oMotorista.NombreMotorista,           // 6
                     item.oTransporte.Placa,            // 7
                     item.oEstado.Descripcion,          // 8
                     item.Monto,                        // 9
@@ -118,7 +121,7 @@ namespace CapaPresentacion
                 if (result == DialogResult.OK)
                 {
                     txtidmotorista.Text = modal._Motorista.IdMotorista.ToString();
-                    txtmotorista.Text = modal._Motorista.NombreM;
+                    txtmotorista.Text = modal._Motorista.NombreMotorista;
                 }
                 else
                 {
@@ -148,95 +151,52 @@ namespace CapaPresentacion
 
         private void btnregistrarflete_Click(object sender, EventArgs e)
         {
-            // Validación de campos obligatorios
-            if (string.IsNullOrWhiteSpace(txtidcliente.Text) || Convert.ToInt32(txtidcliente.Text) == 0)
-            {
-                MessageBox.Show("Debe seleccionar un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtidmotorista.Text) || Convert.ToInt32(txtidmotorista.Text) == 0)
-            {
-                MessageBox.Show("Debe seleccionar un motorista", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtidunidad.Text) || Convert.ToInt32(txtidunidad.Text) == 0)
-            {
-                MessageBox.Show("Debe seleccionar una unidad de transporte", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtmonto.Text))
-            {
-                MessageBox.Show("Debe ingresar el monto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtrecolecta.Text))
-            {
-                MessageBox.Show("Debe ingresar el lugar de recolecta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtentrega.Text))
-            {
-                MessageBox.Show("Debe ingresar el lugar de entrega", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }            
+            // Validación para no aceptar valores de string en algo numérico.
             decimal monto;
             if (!decimal.TryParse(txtmonto.Text, out monto))
             {
                 MessageBox.Show("El monto debe ser un valor numérico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            // Validación de fechas
-            if (dateTimePicker2.Value < dateTimePicker1.Value)
-            {
-                MessageBox.Show("La fecha y hora de llegada no puede ser anterior a la fecha y hora de salida", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
 
             bool resultado;        
             string mensaje = "";
 
+            
+            Flete objFlete = new Flete()
+            {
+                IdFlete = idFleteSeleccionado,
+                oCliente = new Cliente() { IdCliente = Convert.ToInt32(txtidcliente.Text) },
+                oTransporte = new Transporte() { IdUnidad = Convert.ToInt32(txtidunidad.Text) },
+                oMotorista = new Motorista() { IdMotorista = Convert.ToInt32(txtidmotorista.Text) },
+                oEstado = new Estado() { IdEstado = Convert.ToInt32(Comboestado.SelectedValue) },
+                Monto = Convert.ToDecimal(txtmonto.Text),
+                Lrecolecta = txtrecolecta.Text,
+                Lentrega = txtentrega.Text,
+                Hsalida = dateTimePicker1.Value,
+                Hllegada = dateTimePicker2.Value,
+                Consideraciones = txtconsideracion.Text
+            };
+
             if (idFleteSeleccionado > 0)
             {
-                // Si se ha seleccionado un flete, se edita
-                Flete objFlete = new Flete()
-                {
-                    IdFlete = idFleteSeleccionado,
-                    oCliente = new Cliente() { IdCliente = Convert.ToInt32(txtidcliente.Text) },
-                    oTransporte = new Transporte() { IdUnidad = Convert.ToInt32(txtidunidad.Text) },
-                    oMotorista = new Motorista() { IdMotorista = Convert.ToInt32(txtidmotorista.Text) },
-                    oEstado = new Estado() { IdEstado = Convert.ToInt32(Comboestado.SelectedValue) },
-                    Monto = Convert.ToDecimal(txtmonto.Text),
-                    Lrecolecta = txtrecolecta.Text,
-                    Lentrega = txtentrega.Text,
-                    Hsalida = dateTimePicker1.Value,
-                    Hllegada = dateTimePicker2.Value,
-                    Consideraciones = txtconsideracion.Text
-                };
-                resultado = new CN_Flete().Editar(objFlete, out mensaje);
+                resultado = this.cn_flete.Editar(objFlete, out mensaje);
+                if(objFlete.oEstado.IdEstado == 3 || objFlete.oEstado.IdEstado == 4 || objFlete.oEstado.IdEstado == 5)
+                    new frmReportes().Show();
             }
             else
             {
                 // Si no se ha seleccionado ningun flete, se toma como registrar y no editar
-                resultado = new CD_Flete().RegistrarFlete(
-                    Convert.ToInt32(txtidcliente.Text),
-                    Convert.ToInt32(txtidunidad.Text),
-                    Convert.ToInt32(txtidmotorista.Text),
-                    Convert.ToInt32(Comboestado.SelectedValue),
-                    Convert.ToDecimal(txtmonto.Text),
-                    txtrecolecta.Text,
-                    txtentrega.Text,
-                    txtconsideracion.Text,
-                    dateTimePicker1.Value,
-                    dateTimePicker2.Value
+                resultado = this.cn_flete.RegistrarFlete(
+                    objFlete,
+                    out mensaje
                 );
-                mensaje = resultado ? "Flete registrado correctamente." : "Error al registrar el flete.";
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, resultado ? MessageBoxIcon.Information : MessageBoxIcon.Error);
             }
 
-            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, resultado ? MessageBoxIcon.Information : MessageBoxIcon.Error);
-
            
-            RecargarFletes();
-            LimpiarFormulario();
+            this.RecargarFletes();
+            this.LimpiarFormulario();
             idFleteSeleccionado = 0; 
         }
 
@@ -247,7 +207,7 @@ namespace CapaPresentacion
             if (e.RowIndex < 0) return;
 
             
-            if (dgvflete.Columns[e.ColumnIndex].Name == "btnEditar")
+            if (e.RowIndex >= 0 ||dgvflete.Columns[e.ColumnIndex].Name == "btnEditar")
             {
                 idFleteSeleccionado = Convert.ToInt32(dgvflete.Rows[e.RowIndex].Cells[0].Value);
 
@@ -276,7 +236,7 @@ namespace CapaPresentacion
                 {
                     Flete objFlete = new Flete() { IdFlete = idFlete };
                     string mensaje;
-                    bool eliminado = new CN_Flete().Eliminar(objFlete, out mensaje);
+                    bool eliminado = this.cn_flete.Eliminar(objFlete, out mensaje);
 
                     MessageBox.Show(mensaje, "Eliminar", MessageBoxButtons.OK, eliminado ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                     if (eliminado)
@@ -293,7 +253,7 @@ namespace CapaPresentacion
         private void RecargarFletes()
         {
             dgvflete.Rows.Clear();
-            List<Flete> lista = new CN_Flete().Listar();
+            List<Flete> lista = this.cn_flete.Listar();
             foreach (Flete item in lista)
             {
                 dgvflete.Rows.Add(new object[] {
@@ -303,7 +263,7 @@ namespace CapaPresentacion
                     item.oTransporte.IdUnidad,         // 3
                     item.oEstado.IdEstado,             // 4
                     item.oCliente.NombreCliente,       // 5
-                    item.oMotorista.NombreM,           // 6
+                    item.oMotorista.NombreMotorista,           // 6
                     item.oTransporte.Placa,            // 7
                     item.oEstado.Descripcion,          // 8
                     item.Monto,                        // 9

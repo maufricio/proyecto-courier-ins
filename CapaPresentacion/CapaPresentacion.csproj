@@ -104,6 +104,18 @@
     <Compile Include="frmFlete.Designer.cs">
       <DependentUpon>frmFlete.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMotorista.Designer.cs">
+      <DependentUpon>frmMotorista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportes.Designer.cs">
+      <DependentUpon>frmReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUnidadTransporte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +127,12 @@
     </Compile>
     <Compile Include="frmUtilidadesFletes.Designer.cs">
       <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Modales\mdclientes.cs">
       <SubType>Form</SubType>
@@ -159,11 +177,20 @@
     <EmbeddedResource Include="frmFlete.resx">
       <DependentUpon>frmFlete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMotorista.resx">
+      <DependentUpon>frmMotorista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportes.resx">
+      <DependentUpon>frmReportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUnidadTransporte.resx">
       <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUtilidadesFletes.resx">
       <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdclientes.resx">
       <DependentUpon>mdclientes.cs</DependentUpon>

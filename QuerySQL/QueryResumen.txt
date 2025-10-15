@@ -1,35 +1,11 @@
 ﻿USE DBTRANSPORTE
 GO
 
-/* ===== ROLES Y PERMISOS ===== */
-CREATE TABLE ROL(
-    IdRol INT PRIMARY KEY IDENTITY,
-    Descripcion VARCHAR(50),
-    FechaRegistro DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE PERMISO(
-    IdPermiso INT PRIMARY KEY IDENTITY,
-    IdRol INT REFERENCES ROL(IdRol),
-    NombreMenu VARCHAR(100),
-    FechaRegistro DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE USUARIO(
-    IdUsuario INT PRIMARY KEY IDENTITY,
-    Documento VARCHAR(50),
-    NombreCompleto VARCHAR(100),
-    Correo VARCHAR(100),
-    Clave VARCHAR(100),
-    IdRol INT REFERENCES ROL(IdRol),
-    Estado BIT,
-    FechaRegistro DATETIME DEFAULT GETDATE()
-);
-
 /* ===== CLIENTES ===== */
 CREATE TABLE CLIENTE(
     IdCliente INT PRIMARY KEY IDENTITY,
     NombreCliente VARCHAR(100) NOT NULL,
+    correo varchar(200) NOT NULL,
     Direccion VARCHAR(200) NOT NULL,
     Estado BIT DEFAULT 1,
     FechaRegistro DATETIME DEFAULT GETDATE()
@@ -103,6 +79,9 @@ BEGIN
 
     SELECT 
         f.IdFlete,
+        c.NombreCliente,
+        u.Placa,
+        m.NombreMotorista,
         f.MontoCobro AS ValorFlete,
         ISNULL(SUM(g.Monto), 0) AS TotalGastos,
         (f.MontoCobro - ISNULL(SUM(g.Monto), 0)) AS UtilidadNeta,
@@ -110,13 +89,280 @@ BEGIN
             WHEN f.MontoCobro > 0 
             THEN ((f.MontoCobro - ISNULL(SUM(g.Monto), 0)) / f.MontoCobro) * 100
             ELSE 0
-        END AS PorcentajeUtilidad
+        END AS PorcentajeUtilidad,
+        f.FechaRegistro
     FROM FLETE f
+    INNER JOIN CLIENTE c ON f.IdCliente = c.IdCliente
+    INNER JOIN UNIDAD_TRANSPORTE u ON f.IdUnidad = u.IdUnidad
+    INNER JOIN MOTORISTA m ON f.IdMotorista = m.IdMotorista
+    INNER JOIN ESTADO_FLETE e ON f.IdEstado = e.IdEstado
     LEFT JOIN GASTO_FLETE g ON f.IdFlete = g.IdFlete
-    GROUP BY f.IdFlete, f.MontoCobro;
+    WHERE e.Descripcion = 'Terminado'
+    GROUP BY f.IdFlete, c.NombreCliente, u.Placa, m.NombreMotorista, f.MontoCobro, f.FechaRegistro
+    ORDER BY f.FechaRegistro DESC;
 END;
 GO
 
 
-ALTER TABLE CLIENTE
-ADD correo VARCHAR NOT NULL;
+/* ===== STORED PROCEDURE PARA REGISTRAR UNIDAD DE TRANSPORTE ===== */
+CREATE PROCEDURE sp_RegistrarUnidadTransporte
+(
+    @Placa VARCHAR(20),
+    @Marca VARCHAR(50),
+    @CapacidadToneladas DECIMAL(10,2),
+    @AnioFabricacion INT,
+    @Estado BIT,
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    -- Validar que no exista la placa
+    IF EXISTS (SELECT * FROM UNIDAD_TRANSPORTE WHERE Placa = @Placa)
+    BEGIN
+        SET @Mensaje = 'Ya existe una unidad con esa placa'
+        RETURN
+    END
+
+    BEGIN TRY
+        INSERT INTO UNIDAD_TRANSPORTE (Placa, Marca, CapacidadToneladas, AnioFabricacion, Estado)
+        VALUES (@Placa, @Marca, @CapacidadToneladas, @AnioFabricacion, @Estado)
+
+        SET @Resultado = SCOPE_IDENTITY()
+        SET @Mensaje = 'Unidad registrada correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+/* ===== STORED PROCEDURE PARA MODIFICAR UNIDAD DE TRANSPORTE ===== */
+CREATE PROCEDURE sp_ModificarUnidadTransporte
+(
+    @IdUnidad INT,
+    @Placa VARCHAR(20),
+    @Marca VARCHAR(50),
+    @CapacidadToneladas DECIMAL(10,2),
+    @AnioFabricacion INT,
+    @Estado BIT,
+    @Resultado BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+)
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+
+    -- Validar que no exista otra unidad con la misma placa
+    IF EXISTS (SELECT * FROM UNIDAD_TRANSPORTE WHERE Placa = @Placa AND IdUnidad != @IdUnidad)
+    BEGIN
+        SET @Mensaje = 'Ya existe otra unidad con esa placa'
+        RETURN
+    END
+
+    BEGIN TRY
+        UPDATE UNIDAD_TRANSPORTE 
+        SET 
+            Placa = @Placa,
+            Marca = @Marca,
+            CapacidadToneladas = @CapacidadToneladas,
+            AnioFabricacion = @AnioFabricacion,
+            Estado = @Estado
+        WHERE IdUnidad = @IdUnidad
+
+        SET @Resultado = 1
+        SET @Mensaje = 'Unidad modificada correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+/* ----------------------------------------------------------------- */
+
+-- PROCEDIMIENTOS ALMACENADOS PARA GESTIÓN DE GASTOS
+
+CREATE PROCEDURE sp_GuardarGastos
+    @IdFlete INT,
+    @TipoGasto VARCHAR(50),
+    @Concepto VARCHAR(100),
+    @Monto DECIMAL(10,2),
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+    
+    BEGIN TRY
+        INSERT INTO GASTO_FLETE(IdFlete, TipoGasto, Concepto, Monto)
+        VALUES (@IdFlete, @TipoGasto, @Concepto, @Monto)
+        
+        SET @Resultado = SCOPE_IDENTITY()
+        SET @Mensaje = 'Gasto registrado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE sp_EditarGastos
+    @IdGasto INT,
+    @TipoGasto VARCHAR(50),
+    @Concepto VARCHAR(100),
+    @Monto DECIMAL(10,2),
+    @Resultado BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Resultado = 0
+    SET @Mensaje = ''
+    
+    BEGIN TRY
+        UPDATE GASTO_FLETE
+        SET TipoGasto = @TipoGasto,
+            Concepto = @Concepto,
+            Monto = @Monto
+        WHERE IdGasto = @IdGasto
+        
+        SET @Resultado = 1
+        SET @Mensaje = 'Gasto actualizado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE sp_EliminarGastos
+    @IdGasto INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+    
+    BEGIN TRY
+        DELETE FROM GASTO_FLETE WHERE IdGasto = @IdGasto
+        SET @Respuesta = 1
+        SET @Mensaje = 'Gasto eliminado correctamente'
+    END TRY
+    BEGIN CATCH
+        SET @Respuesta = 0
+        SET @Mensaje = ERROR_MESSAGE()
+    END CATCH
+END
+GO
+
+/* ----------------------------------------------------------------- */
+
+
+/* ===== STORED PROCEDURE PARA REGISTRAR MOTORISTA ===== */
+
+CREATE PROCEDURE sp_RegistrarMotorista
+    
+    @NombreMotorista VARCHAR(100),
+    @Direccion VARCHAR(200),
+    @Correo VARCHAR(100),
+    @Telefono VARCHAR(20),
+    @PerfilSocial VARCHAR(100),
+    @Estado BIT,
+    @FechaRegistro VARCHAR(50),
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO MOTORISTA
+        (
+            NombreMotorista,
+            Direccion,
+            Correo,
+            Telefono,
+            PerfilSocial,
+            Estado,
+            FechaRegistro
+        )
+        VALUES
+        (
+            @NombreMotorista,
+            @Direccion,
+            @Correo,
+            @Telefono,
+            @PerfilSocial,
+            @Estado,
+            @FechaRegistro
+        );
+
+        SET @Resultado = SCOPE_IDENTITY();
+        SET @Mensaje = 'Motorista registered successfully.';
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
+END
+
+/* ===== STORED PROCEDURE PARA MODIFICAR MOTORISTA ===== */
+
+USE [DBTRANSPORTE]
+GO
+
+IF OBJECT_ID('sp_ModificarMotorista', 'P') IS NOT NULL
+    DROP PROCEDURE sp_ModificarMotorista
+GO
+
+CREATE PROCEDURE sp_ModificarMotorista
+    @IdMotorista INT,
+    @NombreMotorista VARCHAR(100),
+    @Direccion VARCHAR(200),
+    @Correo VARCHAR(100),
+    @Telefono VARCHAR(20),
+    @PerfilSocial VARCHAR(100),
+    @Estado BIT,
+    @FechaRegistro VARCHAR(50),
+    @Resultado INT OUTPUT,
+    @Mensaje VARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        IF EXISTS (SELECT 1 FROM MOTORISTA WHERE IdMotorista = @IdMotorista)
+        BEGIN
+            UPDATE MOTORISTA
+            SET NombreMotorista = @NombreMotorista,
+                Direccion = @Direccion,
+                Correo = @Correo,
+                Telefono = @Telefono,
+                PerfilSocial = @PerfilSocial,
+                Estado = @Estado,
+                FechaRegistro = @FechaRegistro
+            WHERE IdMotorista = @IdMotorista;
+
+            SET @Resultado = 1;
+            SET @Mensaje = 'Motorista updated successfully.';
+        END
+        ELSE
+        BEGIN
+            SET @Resultado = 0;
+            SET @Mensaje = 'Motorista not found.';
+        END
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
+END
+GO

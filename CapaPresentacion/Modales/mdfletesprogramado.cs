@@ -32,7 +32,7 @@ namespace CapaPresentacion.Modales
                 dgvfleteprogramado.Rows.Add(new object[] {
                     item.IdFlete,                      // 0                   
                     item.oCliente.NombreCliente,       // 1
-                    item.oMotorista.NombreM,           // 2
+                    item.oMotorista.NombreMotorista,           // 2
                     item.oTransporte.Placa,            // 3
                     item.oEstado.Descripcion,          // 4
                 });
