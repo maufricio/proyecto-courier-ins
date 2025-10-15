@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D17BBD10-B03D-4126-ABFB-0B8B208C3E12}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>CapaPresentacion</RootNamespace>
     <AssemblyName>SistemaVentasDemo</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -34,7 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logocanal.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -81,59 +86,29 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCategoria.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCategoria.Designer.cs">
-      <DependentUpon>frmCategoria.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCompras.cs">
+    <Compile Include="frmdashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCompras.Designer.cs">
-      <DependentUpon>frmCompras.cs</DependentUpon>
+    <Compile Include="frmdashboard.Designer.cs">
+      <DependentUpon>frmdashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetalleCompra.cs">
+    <Compile Include="frmFlete.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetalleCompra.Designer.cs">
-      <DependentUpon>frmDetalleCompra.cs</DependentUpon>
+    <Compile Include="frmFlete.Designer.cs">
+      <DependentUpon>frmFlete.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetalleVenta.cs">
+    <Compile Include="frmMotorista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetalleVenta.Designer.cs">
-      <DependentUpon>frmDetalleVenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNegocio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNegocio.Designer.cs">
-      <DependentUpon>frmNegocio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmProducto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmProducto.Designer.cs">
-      <DependentUpon>frmProducto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmProveedores.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmProveedores.Designer.cs">
-      <DependentUpon>frmProveedores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmReporteCompras.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReporteCompras.Designer.cs">
-      <DependentUpon>frmReporteCompras.cs</DependentUpon>
+    <Compile Include="frmMotorista.Designer.cs">
+      <DependentUpon>frmMotorista.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReportes.cs">
       <SubType>Form</SubType>
@@ -141,23 +116,17 @@
     <Compile Include="frmReportes.Designer.cs">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReporteVentas.cs">
+    <Compile Include="frmUnidadTransporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReporteVentas.Designer.cs">
-      <DependentUpon>frmReporteVentas.cs</DependentUpon>
+    <Compile Include="frmUnidadTransporte.Designer.cs">
+      <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUsuarios.cs">
+    <Compile Include="frmUtilidadesFletes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUsuarios.Designer.cs">
-      <DependentUpon>frmUsuarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmVentas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmVentas.Designer.cs">
-      <DependentUpon>frmVentas.cs</DependentUpon>
+    <Compile Include="frmUtilidadesFletes.Designer.cs">
+      <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
@@ -165,95 +134,78 @@
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Modales\mdclientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="Modales\mdclientes.Designer.cs">
+      <DependentUpon>mdclientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modales\mdAcercade.cs">
+    <Compile Include="Modales\mdfletesprogramado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modales\mdAcercade.Designer.cs">
-      <DependentUpon>mdAcercade.cs</DependentUpon>
+    <Compile Include="Modales\mdfletesprogramado.Designer.cs">
+      <DependentUpon>mdfletesprogramado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modales\mdCliente.cs">
+    <Compile Include="Modales\mdfletesqueja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modales\mdCliente.Designer.cs">
-      <DependentUpon>mdCliente.cs</DependentUpon>
+    <Compile Include="Modales\mdfletesqueja.Designer.cs">
+      <DependentUpon>mdfletesqueja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modales\mdProducto.cs">
+    <Compile Include="Modales\mdmotoristas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modales\mdProducto.Designer.cs">
-      <DependentUpon>mdProducto.cs</DependentUpon>
+    <Compile Include="Modales\mdmotoristas.Designer.cs">
+      <DependentUpon>mdmotoristas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modales\mdProveedor.cs">
+    <Compile Include="Modales\mdtransporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modales\mdProveedor.Designer.cs">
-      <DependentUpon>mdProveedor.cs</DependentUpon>
+    <Compile Include="Modales\mdtransporte.Designer.cs">
+      <DependentUpon>mdtransporte.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades\GeneradorPDFUtilidades.cs" />
     <Compile Include="Utilidades\OpcionCombo.cs" />
-    <EmbeddedResource Include="frmCategoria.resx">
-      <DependentUpon>frmCategoria.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCompras.resx">
-      <DependentUpon>frmCompras.cs</DependentUpon>
+    <EmbeddedResource Include="frmdashboard.resx">
+      <DependentUpon>frmdashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetalleCompra.resx">
-      <DependentUpon>frmDetalleCompra.cs</DependentUpon>
+    <EmbeddedResource Include="frmFlete.resx">
+      <DependentUpon>frmFlete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetalleVenta.resx">
-      <DependentUpon>frmDetalleVenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNegocio.resx">
-      <DependentUpon>frmNegocio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmProducto.resx">
-      <DependentUpon>frmProducto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmProveedores.resx">
-      <DependentUpon>frmProveedores.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmReporteCompras.resx">
-      <DependentUpon>frmReporteCompras.cs</DependentUpon>
+    <EmbeddedResource Include="frmMotorista.resx">
+      <DependentUpon>frmMotorista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReporteVentas.resx">
-      <DependentUpon>frmReporteVentas.cs</DependentUpon>
+    <EmbeddedResource Include="frmUnidadTransporte.resx">
+      <DependentUpon>frmUnidadTransporte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUsuarios.resx">
-      <DependentUpon>frmUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmVentas.resx">
-      <DependentUpon>frmVentas.cs</DependentUpon>
+    <EmbeddedResource Include="frmUtilidadesFletes.resx">
+      <DependentUpon>frmUtilidadesFletes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="Modales\mdclientes.resx">
+      <DependentUpon>mdclientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modales\mdAcercade.resx">
-      <DependentUpon>mdAcercade.cs</DependentUpon>
+    <EmbeddedResource Include="Modales\mdfletesprogramado.resx">
+      <DependentUpon>mdfletesprogramado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modales\mdCliente.resx">
-      <DependentUpon>mdCliente.cs</DependentUpon>
+    <EmbeddedResource Include="Modales\mdfletesqueja.resx">
+      <DependentUpon>mdfletesqueja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modales\mdProducto.resx">
-      <DependentUpon>mdProducto.cs</DependentUpon>
+    <EmbeddedResource Include="Modales\mdmotoristas.resx">
+      <DependentUpon>mdmotoristas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modales\mdProveedor.resx">
-      <DependentUpon>mdProveedor.cs</DependentUpon>
+    <EmbeddedResource Include="Modales\mdtransporte.resx">
+      <DependentUpon>mdtransporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -282,6 +234,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
+      <Project>{563f60c8-e2fb-4f83-b355-010b705cd14f}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
       <Project>{e4fdc1a1-483f-44a0-a328-596d29eb7629}</Project>
       <Name>CapaEntidad</Name>
@@ -313,5 +269,6 @@
   <ItemGroup>
     <Content Include="logocanal.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

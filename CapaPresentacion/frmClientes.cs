@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,19 +16,24 @@ namespace CapaPresentacion
 {
     public partial class frmClientes : Form
     {
+
+
         public frmClientes()
         {
             InitializeComponent();
         }
 
+        private static string _guardarText = "Guardar";
+        private static string _editarText = "Editar";
+
         private void frmClientes_Load(object sender, EventArgs e)
         {
 
-            cboestado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
-            cboestado.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
-            cboestado.DisplayMember = "Texto";
-            cboestado.ValueMember = "Valor";
-            cboestado.SelectedIndex = 0;
+            cboestadocliente.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
+            cboestadocliente.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
+            cboestadocliente.DisplayMember = "Texto";
+            cboestadocliente.ValueMember = "Valor";
+            cboestadocliente.SelectedIndex = 0;
 
 
             foreach (DataGridViewColumn columna in dgvdata.Columns)
@@ -48,10 +54,7 @@ namespace CapaPresentacion
 
             foreach (Cliente item in lista)
             {
-                dgvdata.Rows.Add(new object[] {"",item.IdCliente,item.Documento,item.NombreCompleto,item.Correo,item.Telefono,
-                    item.Estado == true ? 1 : 0 ,
-                    item.Estado == true ? "Activo" : "No Activo"
-                });
+                dgvdata.Rows.Add(new object[] {"",item.IdCliente,item.NombreCliente,item.Direccion,item.Correo, item.Estado == 1 ? "Activo" : "No Activo" });
             }
         }
 
@@ -59,29 +62,41 @@ namespace CapaPresentacion
         {
             string mensaje = string.Empty;
 
+            string id_cliente_field = txtid.Text.Trim();
+
+            string nombreCliente = txtnombrecliente.Text.Trim();
+            string dirCliente = txtdireccioncliente.Text.Trim();
+            string correoCliente = txtcorreocliente.Text.Trim();
+            int estadoCliente = ((OpcionCombo)cboestadocliente.SelectedItem).Valor != null ? Convert.ToInt32(((OpcionCombo)cboestadocliente.SelectedItem).Valor) : 1;
+
             Cliente obj = new Cliente()
             {
-                IdCliente = Convert.ToInt32(txtid.Text),
-                Documento = txtdocumento.Text,
-                NombreCompleto = txtnombrecompleto.Text,
-                Correo = txtcorreo.Text,
-                Telefono = txttelefono.Text,
-                Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
+                IdCliente = Convert.ToInt32(id_cliente_field == "" ? "0" : id_cliente_field),
+                NombreCliente = nombreCliente,
+                Direccion = dirCliente,
+                Correo = correoCliente,
+                Estado = estadoCliente
             };
 
-            if (obj.IdCliente == 0)
+            if (btnguardar.Text == _guardarText)
             {
                 int idgenerado = new CN_Cliente().Registrar(obj, out mensaje);
 
                 if (idgenerado != 0)
                 {
 
-                    dgvdata.Rows.Add(new object[] {"",idgenerado,txtdocumento.Text,txtnombrecompleto.Text,txtcorreo.Text,txttelefono.Text,
-                        ((OpcionCombo)cboestado.SelectedItem).Valor.ToString(),
-                        ((OpcionCombo)cboestado.SelectedItem).Texto.ToString()
-                    });
+                    dgvdata.Rows.Add(
+                        new object[] {"",
+                            idgenerado,
+                            txtnombrecliente.Text,
+                            txtdireccioncliente.Text,
+                            txtcorreocliente.Text,
+                            ((OpcionCombo)cboestadocliente.SelectedItem).Texto.ToString()
+                    }); // Con esto agrega una nueva fila al DataGridView
 
-                    Limpiar();
+                    MessageBox.Show(mensaje);
+
+                    this.Limpiar();
                 }
                 else
                 {
@@ -90,20 +105,18 @@ namespace CapaPresentacion
 
 
             }
-            else
+            else if(btnguardar.Text == _editarText)
             {
                 bool resultado = new CN_Cliente().Editar(obj, out mensaje);
 
                 if (resultado)
                 {
                     DataGridViewRow row = dgvdata.Rows[Convert.ToInt32(txtindice.Text)];
-                    row.Cells["Id"].Value = txtid.Text;
-                    row.Cells["Documento"].Value = txtdocumento.Text;
-                    row.Cells["NombreCompleto"].Value = txtnombrecompleto.Text;
-                    row.Cells["Correo"].Value = txtcorreo.Text;
-                    row.Cells["Telefono"].Value = txttelefono.Text;
-                    row.Cells["EstadoValor"].Value = ((OpcionCombo)cboestado.SelectedItem).Valor.ToString();
-                    row.Cells["Estado"].Value = ((OpcionCombo)cboestado.SelectedItem).Texto.ToString();
+                    row.Cells["IdCliente"].Value = txtid.Text;
+                    row.Cells["NombreCliente"].Value = txtnombrecliente.Text;
+                    row.Cells["DireccionCliente"].Value = txtdireccioncliente.Text;
+                    row.Cells["CorreoCliente"].Value = txtcorreocliente.Text;
+                    row.Cells["EstadoCliente"].Value = ((OpcionCombo)cboestadocliente.SelectedItem).Valor.ToString();
                     Limpiar();
                 }
                 else
@@ -118,14 +131,12 @@ namespace CapaPresentacion
 
         private void Limpiar()
         {
-            txtindice.Text = "-1";
-            txtid.Text = "0";
-            txtdocumento.Text = "";
-            txtnombrecompleto.Text = "";
-            txtcorreo.Text = "";
-            txttelefono.Text = "";
-            cboestado.SelectedIndex = 0;
-            txtdocumento.Select();
+            txtnombrecliente.Text = "";
+            txtdireccioncliente.Text = "";
+            txtcorreocliente.Text = "";
+            cboestadocliente.SelectedIndex = 0;
+            txtnombrecliente.Select();
+            btnguardar.Text = "Guardar";
         }
 
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -150,35 +161,33 @@ namespace CapaPresentacion
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvdata.Columns[e.ColumnIndex].Name == "btnseleccionar")
+            // Verifica que el clic fue en una fila válida
+            if (e.RowIndex >= 0)
             {
+                DataGridViewRow fila = dgvdata.Rows[e.RowIndex];
 
-                int indice = e.RowIndex;
+                txtindice.Text = e.RowIndex.ToString();
 
-                if (indice >= 0)
+                // Usa los nombres de columnas que realmente tienes en el DataGridView
+                txtid.Text = fila.Cells["IdCliente"].Value?.ToString();
+                txtnombrecliente.Text = fila.Cells["NombreCliente"].Value?.ToString();
+                txtdireccioncliente.Text = fila.Cells["DireccionCliente"].Value?.ToString();
+                txtcorreocliente.Text = fila.Cells["CorreoCliente"].Value?.ToString();
+
+                // Para Estado del Cliente, asumiendo que guardas 0/1 en otra columna oculta o en el mismo texto
+                if (fila.Cells["EstadoCliente"].Value != null)
                 {
-
-                    txtindice.Text = indice.ToString();
-                    txtid.Text = dgvdata.Rows[indice].Cells["Id"].Value.ToString();
-                    txtdocumento.Text = dgvdata.Rows[indice].Cells["Documento"].Value.ToString();
-                    txtnombrecompleto.Text = dgvdata.Rows[indice].Cells["NombreCompleto"].Value.ToString();
-                    txtcorreo.Text = dgvdata.Rows[indice].Cells["Correo"].Value.ToString();
-                    txttelefono.Text = dgvdata.Rows[indice].Cells["Telefono"].Value.ToString();
-
-                    foreach (OpcionCombo oc in cboestado.Items)
+                    foreach (OpcionCombo oc in cboestadocliente.Items)
                     {
-                        if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(dgvdata.Rows[indice].Cells["EstadoValor"].Value))
+                        if (oc.Valor.ToString() == fila.Cells["EstadoCliente"].Value.ToString())
                         {
-                            int indice_combo = cboestado.Items.IndexOf(oc);
-                            cboestado.SelectedIndex = indice_combo;
+                            cboestadocliente.SelectedItem = oc;
                             break;
                         }
                     }
-
-
                 }
 
-
+                btnguardar.Text = _editarText;
             }
         }
 
@@ -195,7 +204,7 @@ namespace CapaPresentacion
                         IdCliente = Convert.ToInt32(txtid.Text)
                     };
 
-                    bool respuesta = new CN_Cliente().Eliminar(obj, out mensaje);
+                    bool respuesta = new CN_Cliente().Eliminar(obj.IdCliente, out mensaje);
 
                     if (respuesta)
                     {
@@ -243,6 +252,11 @@ namespace CapaPresentacion
         }
 
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboestadocliente_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

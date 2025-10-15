@@ -30,40 +30,50 @@
         {
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menucompras = new FontAwesome.Sharp.IconMenuItem();
-            this.submenuregistrarcompra = new FontAwesome.Sharp.IconMenuItem();
-            this.submenutverdetallecompra = new FontAwesome.Sharp.IconMenuItem();
             this.menuclientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuproveedores = new FontAwesome.Sharp.IconMenuItem();
-            this.menuventas = new FontAwesome.Sharp.IconMenuItem();
-            this.submenuregistrarventa = new FontAwesome.Sharp.IconMenuItem();
-            this.submenuverdetalleventa = new FontAwesome.Sharp.IconMenuItem();
             this.menureportes = new FontAwesome.Sharp.IconMenuItem();
-            this.submenureportecompras = new System.Windows.Forms.ToolStripMenuItem();
-            this.submenureporteventas = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuacercade = new FontAwesome.Sharp.IconMenuItem();
+            this.dash = new FontAwesome.Sharp.IconMenuItem();
             this.menutitulo = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblusuario = new System.Windows.Forms.Label();
-            this.btnsalir = new FontAwesome.Sharp.IconButton();
+            this.labelprogramado = new System.Windows.Forms.Label();
+            this.dgvfleteprogramado = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelqueja = new System.Windows.Forms.Label();
+            this.dgvfletetranscurso = new System.Windows.Forms.DataGridView();
+            this.IdFlete = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdMotorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.menuventas = new FontAwesome.Sharp.IconMenuItem();
             this.menu.SuspendLayout();
+            this.contenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfleteprogramado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfletetranscurso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
             // 
             this.menu.BackColor = System.Drawing.Color.White;
+            this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dash,
             this.menucompras,
             this.menuclientes,
             this.menuproveedores,
             this.menuventas,
-            this.menureportes,
-            this.menuacercade});
+            this.menureportes});
             this.menu.Location = new System.Drawing.Point(0, 66);
             this.menu.Name = "menu";
+            this.menu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menu.Size = new System.Drawing.Size(1157, 73);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
@@ -71,9 +81,6 @@
             // menucompras
             // 
             this.menucompras.AutoSize = false;
-            this.menucompras.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenuregistrarcompra,
-            this.submenutverdetallecompra});
             this.menucompras.IconChar = FontAwesome.Sharp.IconChar.TruckFast;
             this.menucompras.IconColor = System.Drawing.Color.Black;
             this.menucompras.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -81,28 +88,9 @@
             this.menucompras.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menucompras.Name = "menucompras";
             this.menucompras.Size = new System.Drawing.Size(122, 69);
-            this.menucompras.Text = "Viajes";
+            this.menucompras.Text = "Mis Fletes";
             this.menucompras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // submenuregistrarcompra
-            // 
-            this.submenuregistrarcompra.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenuregistrarcompra.IconColor = System.Drawing.Color.Black;
-            this.submenuregistrarcompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.submenuregistrarcompra.Name = "submenuregistrarcompra";
-            this.submenuregistrarcompra.Size = new System.Drawing.Size(129, 22);
-            this.submenuregistrarcompra.Text = "Registrar";
-            this.submenuregistrarcompra.Click += new System.EventHandler(this.submenuregistrarcompra_Click);
-            // 
-            // submenutverdetallecompra
-            // 
-            this.submenutverdetallecompra.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenutverdetallecompra.IconColor = System.Drawing.Color.Black;
-            this.submenutverdetallecompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.submenutverdetallecompra.Name = "submenutverdetallecompra";
-            this.submenutverdetallecompra.Size = new System.Drawing.Size(129, 22);
-            this.submenutverdetallecompra.Text = "Ver Detalle";
-            this.submenutverdetallecompra.Click += new System.EventHandler(this.submenutverdetallecompra_Click);
+            this.menucompras.Click += new System.EventHandler(this.menucompras_Click);
             // 
             // menuclientes
             // 
@@ -114,7 +102,7 @@
             this.menuclientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuclientes.Name = "menuclientes";
             this.menuclientes.Size = new System.Drawing.Size(122, 69);
-            this.menuclientes.Text = "Clientes";
+            this.menuclientes.Text = "Mis Clientes";
             this.menuclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuclientes.Click += new System.EventHandler(this.menuclientes_Click);
             // 
@@ -128,52 +116,13 @@
             this.menuproveedores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuproveedores.Name = "menuproveedores";
             this.menuproveedores.Size = new System.Drawing.Size(122, 69);
-            this.menuproveedores.Text = "Motoristas";
+            this.menuproveedores.Text = "Mis Motoristas";
             this.menuproveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuproveedores.Click += new System.EventHandler(this.menuproveedores_Click);
-            // 
-            // menuventas
-            // 
-            this.menuventas.AutoSize = false;
-            this.menuventas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenuregistrarventa,
-            this.submenuverdetalleventa});
-            this.menuventas.IconChar = FontAwesome.Sharp.IconChar.TruckRampBox;
-            this.menuventas.IconColor = System.Drawing.Color.Black;
-            this.menuventas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuventas.IconSize = 50;
-            this.menuventas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuventas.Name = "menuventas";
-            this.menuventas.Size = new System.Drawing.Size(122, 69);
-            this.menuventas.Text = "Camiones";
-            this.menuventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // submenuregistrarventa
-            // 
-            this.submenuregistrarventa.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenuregistrarventa.IconColor = System.Drawing.Color.Black;
-            this.submenuregistrarventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.submenuregistrarventa.Name = "submenuregistrarventa";
-            this.submenuregistrarventa.Size = new System.Drawing.Size(180, 22);
-            this.submenuregistrarventa.Text = "Registrar";
-            this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
-            // 
-            // submenuverdetalleventa
-            // 
-            this.submenuverdetalleventa.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenuverdetalleventa.IconColor = System.Drawing.Color.Black;
-            this.submenuverdetalleventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.submenuverdetalleventa.Name = "submenuverdetalleventa";
-            this.submenuverdetalleventa.Size = new System.Drawing.Size(180, 22);
-            this.submenuverdetalleventa.Text = "Ver Detalle";
-            this.submenuverdetalleventa.Click += new System.EventHandler(this.submenuverdetalleventa_Click);
             // 
             // menureportes
             // 
             this.menureportes.AutoSize = false;
-            this.menureportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenureportecompras,
-            this.submenureporteventas});
             this.menureportes.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
             this.menureportes.IconColor = System.Drawing.Color.Black;
             this.menureportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -181,48 +130,37 @@
             this.menureportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menureportes.Name = "menureportes";
             this.menureportes.Size = new System.Drawing.Size(122, 69);
-            this.menureportes.Text = "Reportes";
+            this.menureportes.Text = "Reportes Utilidades";
             this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
             // 
-            // submenureportecompras
+            // dash
             // 
-            this.submenureportecompras.Name = "submenureportecompras";
-            this.submenureportecompras.Size = new System.Drawing.Size(180, 22);
-            this.submenureportecompras.Text = "Reporte Compras";
-            this.submenureportecompras.Click += new System.EventHandler(this.submenureportecompras_Click);
-            // 
-            // submenureporteventas
-            // 
-            this.submenureporteventas.Name = "submenureporteventas";
-            this.submenureporteventas.Size = new System.Drawing.Size(180, 22);
-            this.submenureporteventas.Text = "Reporte Ventas";
-            this.submenureporteventas.Click += new System.EventHandler(this.submenureporteventas_Click);
-            // 
-            // menuacercade
-            // 
-            this.menuacercade.AutoSize = false;
-            this.menuacercade.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            this.menuacercade.IconColor = System.Drawing.Color.Black;
-            this.menuacercade.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuacercade.IconSize = 50;
-            this.menuacercade.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuacercade.Name = "menuacercade";
-            this.menuacercade.Size = new System.Drawing.Size(80, 69);
-            this.menuacercade.Text = "Acerca de";
-            this.menuacercade.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menuacercade.Click += new System.EventHandler(this.menuacercade_Click);
+            this.dash.AutoSize = false;
+            this.dash.IconChar = FontAwesome.Sharp.IconChar.Diamond;
+            this.dash.IconColor = System.Drawing.Color.Black;
+            this.dash.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.dash.IconSize = 50;
+            this.dash.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.dash.Name = "dash";
+            this.dash.Size = new System.Drawing.Size(122, 69);
+            this.dash.Text = "Inicio";
+            this.dash.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.dash.Click += new System.EventHandler(this.dash_Click);
             // 
             // menutitulo
             // 
             this.menutitulo.AutoSize = false;
             this.menutitulo.BackColor = System.Drawing.Color.SteelBlue;
+            this.menutitulo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menutitulo.Location = new System.Drawing.Point(0, 0);
             this.menutitulo.Name = "menutitulo";
+            this.menutitulo.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menutitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.menutitulo.Size = new System.Drawing.Size(1157, 66);
             this.menutitulo.TabIndex = 1;
             this.menutitulo.Text = "menuStrip2";
+            this.menutitulo.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menutitulo_ItemClicked);
             // 
             // label1
             // 
@@ -238,52 +176,160 @@
             // 
             // contenedor
             // 
+            this.contenedor.Controls.Add(this.labelprogramado);
+            this.contenedor.Controls.Add(this.dgvfleteprogramado);
+            this.contenedor.Controls.Add(this.labelqueja);
+            this.contenedor.Controls.Add(this.dgvfletetranscurso);
             this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenedor.Location = new System.Drawing.Point(0, 139);
             this.contenedor.Name = "contenedor";
-            this.contenedor.Size = new System.Drawing.Size(1157, 508);
+            this.contenedor.Size = new System.Drawing.Size(1157, 578);
             this.contenedor.TabIndex = 3;
+            this.contenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.contenedor_Paint);
             // 
-            // label2
+            // labelprogramado
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.SteelBlue;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(837, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Usuario:";
+            this.labelprogramado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelprogramado.Location = new System.Drawing.Point(71, 39);
+            this.labelprogramado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelprogramado.Name = "labelprogramado";
+            this.labelprogramado.Size = new System.Drawing.Size(349, 24);
+            this.labelprogramado.TabIndex = 21;
+            this.labelprogramado.Text = "Próximos Fletes Programados";
             // 
-            // lblusuario
+            // dgvfleteprogramado
             // 
-            this.lblusuario.AutoSize = true;
-            this.lblusuario.BackColor = System.Drawing.Color.SteelBlue;
-            this.lblusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblusuario.ForeColor = System.Drawing.Color.White;
-            this.lblusuario.Location = new System.Drawing.Point(889, 31);
-            this.lblusuario.Name = "lblusuario";
-            this.lblusuario.Size = new System.Drawing.Size(61, 15);
-            this.lblusuario.TabIndex = 5;
-            this.lblusuario.Text = "lblusuario";
+            this.dgvfleteprogramado.AllowUserToAddRows = false;
+            this.dgvfleteprogramado.AllowUserToDeleteRows = false;
+            this.dgvfleteprogramado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvfleteprogramado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dgvfleteprogramado.Location = new System.Drawing.Point(75, 65);
+            this.dgvfleteprogramado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvfleteprogramado.Name = "dgvfleteprogramado";
+            this.dgvfleteprogramado.ReadOnly = true;
+            this.dgvfleteprogramado.RowHeadersWidth = 51;
+            this.dgvfleteprogramado.RowTemplate.Height = 24;
+            this.dgvfleteprogramado.Size = new System.Drawing.Size(1051, 173);
+            this.dgvfleteprogramado.TabIndex = 20;
+            this.dgvfleteprogramado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvfleteprogramado_CellClick);
             // 
-            // btnsalir
+            // dataGridViewTextBoxColumn1
             // 
-            this.btnsalir.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnsalir.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnsalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnsalir.IconChar = FontAwesome.Sharp.IconChar.RightFromBracket;
-            this.btnsalir.IconColor = System.Drawing.Color.White;
-            this.btnsalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnsalir.IconSize = 52;
-            this.btnsalir.Location = new System.Drawing.Point(1086, 8);
-            this.btnsalir.Name = "btnsalir";
-            this.btnsalir.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.btnsalir.Size = new System.Drawing.Size(59, 51);
-            this.btnsalir.TabIndex = 6;
-            this.btnsalir.UseVisualStyleBackColor = false;
-            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
+            this.dataGridViewTextBoxColumn1.HeaderText = "IdFlete";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cliente";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Motorista";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Placa Vehiculo";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Estado";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 250;
+            // 
+            // labelqueja
+            // 
+            this.labelqueja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelqueja.Location = new System.Drawing.Point(71, 275);
+            this.labelqueja.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelqueja.Name = "labelqueja";
+            this.labelqueja.Size = new System.Drawing.Size(344, 20);
+            this.labelqueja.TabIndex = 19;
+            this.labelqueja.Text = "Fletes en transcurso (Top 5)";
+            // 
+            // dgvfletetranscurso
+            // 
+            this.dgvfletetranscurso.AllowUserToAddRows = false;
+            this.dgvfletetranscurso.AllowUserToDeleteRows = false;
+            this.dgvfletetranscurso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvfletetranscurso.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdFlete,
+            this.IdCliente,
+            this.IdMotorista,
+            this.Placa,
+            this.IdEstado});
+            this.dgvfletetranscurso.Location = new System.Drawing.Point(75, 297);
+            this.dgvfletetranscurso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvfletetranscurso.Name = "dgvfletetranscurso";
+            this.dgvfletetranscurso.ReadOnly = true;
+            this.dgvfletetranscurso.RowHeadersWidth = 51;
+            this.dgvfletetranscurso.RowTemplate.Height = 24;
+            this.dgvfletetranscurso.Size = new System.Drawing.Size(1051, 209);
+            this.dgvfletetranscurso.TabIndex = 18;
+            this.dgvfletetranscurso.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvfletequeja_CellClick);
+            // 
+            // IdFlete
+            // 
+            this.IdFlete.HeaderText = "IdFlete";
+            this.IdFlete.MinimumWidth = 6;
+            this.IdFlete.Name = "IdFlete";
+            this.IdFlete.ReadOnly = true;
+            this.IdFlete.Visible = false;
+            this.IdFlete.Width = 125;
+            // 
+            // IdCliente
+            // 
+            this.IdCliente.HeaderText = "Cliente";
+            this.IdCliente.MinimumWidth = 6;
+            this.IdCliente.Name = "IdCliente";
+            this.IdCliente.ReadOnly = true;
+            this.IdCliente.Width = 250;
+            // 
+            // IdMotorista
+            // 
+            this.IdMotorista.HeaderText = "Motorista";
+            this.IdMotorista.MinimumWidth = 6;
+            this.IdMotorista.Name = "IdMotorista";
+            this.IdMotorista.ReadOnly = true;
+            this.IdMotorista.Width = 250;
+            // 
+            // Placa
+            // 
+            this.Placa.HeaderText = "Placa Vehiculo";
+            this.Placa.MinimumWidth = 6;
+            this.Placa.Name = "Placa";
+            this.Placa.ReadOnly = true;
+            this.Placa.Width = 200;
+            // 
+            // IdEstado
+            // 
+            this.IdEstado.HeaderText = "Estado";
+            this.IdEstado.MinimumWidth = 6;
+            this.IdEstado.Name = "IdEstado";
+            this.IdEstado.ReadOnly = true;
+            this.IdEstado.Width = 250;
             // 
             // pictureBox1
             // 
@@ -295,14 +341,25 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
+            // menuventas
+            // 
+            this.menuventas.AutoSize = false;
+            this.menuventas.IconChar = FontAwesome.Sharp.IconChar.TruckRampBox;
+            this.menuventas.IconColor = System.Drawing.Color.Black;
+            this.menuventas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menuventas.IconSize = 50;
+            this.menuventas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menuventas.Name = "menuventas";
+            this.menuventas.Size = new System.Drawing.Size(122, 69);
+            this.menuventas.Text = "Mis Unidades";
+            this.menuventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuventas.Click += new System.EventHandler(this.menuventas_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 647);
-            this.Controls.Add(this.btnsalir);
-            this.Controls.Add(this.lblusuario);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(1157, 717);
             this.Controls.Add(this.contenedor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menu);
@@ -311,9 +368,13 @@
             this.MainMenuStrip = this.menu;
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inicio - Plataforma de Gestión Interna";
+            this.Text = "Inicio - Gestión Transportes Orellana";
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.contenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfleteprogramado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvfletetranscurso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -323,25 +384,30 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menu;
-        private FontAwesome.Sharp.IconMenuItem menuventas;
         private FontAwesome.Sharp.IconMenuItem menucompras;
         private FontAwesome.Sharp.IconMenuItem menuclientes;
         private FontAwesome.Sharp.IconMenuItem menuproveedores;
         private FontAwesome.Sharp.IconMenuItem menureportes;
-        private FontAwesome.Sharp.IconMenuItem menuacercade;
         private System.Windows.Forms.MenuStrip menutitulo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel contenedor;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblusuario;
-        private FontAwesome.Sharp.IconMenuItem submenuregistrarventa;
-        private FontAwesome.Sharp.IconMenuItem submenuverdetalleventa;
-        private FontAwesome.Sharp.IconMenuItem submenuregistrarcompra;
-        private FontAwesome.Sharp.IconMenuItem submenutverdetallecompra;
-        private System.Windows.Forms.ToolStripMenuItem submenureportecompras;
-        private System.Windows.Forms.ToolStripMenuItem submenureporteventas;
-        private FontAwesome.Sharp.IconButton btnsalir;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelprogramado;
+        private System.Windows.Forms.DataGridView dgvfleteprogramado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Label labelqueja;
+        private System.Windows.Forms.DataGridView dgvfletetranscurso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFlete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdMotorista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Placa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEstado;
+        private FontAwesome.Sharp.IconMenuItem dash;
+        private FontAwesome.Sharp.IconMenuItem menuventas;
     }
 }
 

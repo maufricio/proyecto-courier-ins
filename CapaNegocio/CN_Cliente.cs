@@ -3,6 +3,7 @@ using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,31 +12,31 @@ namespace CapaNegocio
     public class CN_Cliente
     {
 
-        private CD_Cliente objcd_Cliente = new CD_Cliente();
+        private CD_Cliente clienteRepositorio = new CD_Cliente();
 
 
         public List<Cliente> Listar()
         {
-            return objcd_Cliente.Listar();
+            return clienteRepositorio.Listar();
         }
 
         public int Registrar(Cliente obj, out string Mensaje)
         {
             Mensaje = string.Empty;
 
-            if (obj.Documento == "")
+            if (obj.NombreCliente == "")
             {
-                Mensaje += "Es necesario el documento del Cliente\n";
+                Mensaje += "Nombre de cliente requerido para ingresar.\n";
             }
 
-            if (obj.NombreCompleto == "")
+            if (obj.Direccion == "")
             {
-                Mensaje += "Es necesario el nombre completo del Cliente\n";
+                Mensaje += "Dirección del cliente requerido para ingresar.\n";
             }
 
-            if (obj.Correo == "")
+            if(obj.Correo == "")
             {
-                Mensaje += "Es necesario el correo del Cliente\n";
+                Mensaje += "Es necesario ingresar el correo del cliente\n";
             }
 
             if (Mensaje != string.Empty)
@@ -44,31 +45,27 @@ namespace CapaNegocio
             }
             else
             {
-                return objcd_Cliente.Registrar(obj, out Mensaje);
+                obj.FechaRegistro = DateTime.Now; // Asigna la fecha y hora actual al registrar un nuevo cliente
+                return clienteRepositorio.Registrar(obj, out Mensaje); // Si todo está bien, llama al método de la capa de datos para registrar el cliente
             }
 
 
         }
 
-
         public bool Editar(Cliente obj, out string Mensaje)
         {
-
             Mensaje = string.Empty;
-
-            if (obj.Documento == "")
+            if (obj.NombreCliente == "")
             {
-                Mensaje += "Es necesario el documento del Cliente\n";
+                Mensaje += "Nombre de cliente requerido para ingresar.\n";
             }
-
-            if (obj.NombreCompleto == "")
+            if (obj.Direccion == "")
             {
-                Mensaje += "Es necesario el nombre completo del Cliente\n";
+                Mensaje += "Dirección del cliente requerido para ingresar.\n";
             }
-
             if (obj.Correo == "")
             {
-                Mensaje += "Es necesario el correo del Cliente\n";
+                Mensaje += "Es necesario ingresar el correo del cliente\n";
             }
             if (Mensaje != string.Empty)
             {
@@ -76,16 +73,13 @@ namespace CapaNegocio
             }
             else
             {
-                return objcd_Cliente.Editar(obj, out Mensaje);
+                return clienteRepositorio.Editar(obj, out Mensaje); // Si todo está bien, llama al método de la capa de datos para registrar el cliente
             }
-
-
         }
 
-
-        public bool Eliminar(Cliente obj, out string Mensaje)
+        public bool Eliminar(int id, out string Mensaje)
         {
-            return objcd_Cliente.Eliminar(obj, out Mensaje);
+            return clienteRepositorio.Eliminar(id, out Mensaje);
         }
 
     }

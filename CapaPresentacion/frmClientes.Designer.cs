@@ -1,5 +1,7 @@
-﻿namespace CapaPresentacion
+﻿
+namespace CapaPresentacion
 {
+
     partial class frmClientes
     {
         /// <summary>
@@ -32,36 +34,32 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.dgvdata = new System.Windows.Forms.DataGridView();
-            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DireccionCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CorreoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnlimpiarbuscador = new FontAwesome.Sharp.IconButton();
             this.txtbusqueda = new System.Windows.Forms.TextBox();
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtid = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtindice = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btneliminar = new FontAwesome.Sharp.IconButton();
             this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.btnguardar = new FontAwesome.Sharp.IconButton();
             this.label8 = new System.Windows.Forms.Label();
-            this.cboestado = new System.Windows.Forms.ComboBox();
-            this.txttelefono = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtcorreo = new System.Windows.Forms.TextBox();
-            this.txtnombrecompleto = new System.Windows.Forms.TextBox();
-            this.txtdocumento = new System.Windows.Forms.TextBox();
+            this.cboestadocliente = new System.Windows.Forms.ComboBox();
+            this.txtcorreocliente = new System.Windows.Forms.TextBox();
+            this.txtdireccioncliente = new System.Windows.Forms.TextBox();
+            this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtindice = new System.Windows.Forms.TextBox();
+            this.txtid = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,15 +96,13 @@
             this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.btnseleccionar,
-            this.Id,
-            this.Documento,
-            this.NombreCompleto,
-            this.Correo,
-            this.Telefono,
-            this.EstadoValor,
-            this.Estado});
-            this.dgvdata.Location = new System.Drawing.Point(277, 101);
+            this.btnSeleccionar,
+            this.IdCliente,
+            this.NombreCliente,
+            this.DireccionCliente,
+            this.CorreoCliente,
+            this.EstadoCliente});
+            this.dgvdata.Location = new System.Drawing.Point(277, 102);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
@@ -119,59 +115,45 @@
             this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);
             this.dgvdata.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvdata_CellPainting);
             // 
-            // btnseleccionar
+            // btnSeleccionar
             // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 30;
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
             // 
-            // Id
+            // IdCliente
             // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
+            this.IdCliente.HeaderText = "Id Cliente";
+            this.IdCliente.Name = "IdCliente";
+            this.IdCliente.ReadOnly = true;
             // 
-            // Documento
+            // NombreCliente
             // 
-            this.Documento.HeaderText = "Nro Documento";
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 150;
+            this.NombreCliente.HeaderText = "Nombre Cliente";
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.ReadOnly = true;
+            this.NombreCliente.Width = 180;
             // 
-            // NombreCompleto
+            // DireccionCliente
             // 
-            this.NombreCompleto.HeaderText = "Nombre Completo";
-            this.NombreCompleto.Name = "NombreCompleto";
-            this.NombreCompleto.ReadOnly = true;
-            this.NombreCompleto.Width = 180;
+            this.DireccionCliente.HeaderText = "Direccion Cliente";
+            this.DireccionCliente.Name = "DireccionCliente";
+            this.DireccionCliente.ReadOnly = true;
+            this.DireccionCliente.Width = 200;
             // 
-            // Correo
+            // CorreoCliente
             // 
-            this.Correo.HeaderText = "Correo";
-            this.Correo.Name = "Correo";
-            this.Correo.ReadOnly = true;
-            this.Correo.Width = 150;
+            this.CorreoCliente.HeaderText = "Correo Contacto";
+            this.CorreoCliente.Name = "CorreoCliente";
+            this.CorreoCliente.ReadOnly = true;
+            this.CorreoCliente.Width = 150;
             // 
-            // Telefono
+            // EstadoCliente
             // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "EstadoValor";
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
+            this.EstadoCliente.HeaderText = "Estado del Cliente";
+            this.EstadoCliente.Name = "EstadoCliente";
+            this.EstadoCliente.ReadOnly = true;
+            this.EstadoCliente.Width = 111;
             // 
             // btnlimpiarbuscador
             // 
@@ -219,15 +201,6 @@
             this.label11.TabIndex = 50;
             this.label11.Text = "Buscar por:";
             // 
-            // txtid
-            // 
-            this.txtid.Location = new System.Drawing.Point(201, 44);
-            this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(25, 20);
-            this.txtid.TabIndex = 49;
-            this.txtid.Text = "0";
-            this.txtid.Visible = false;
-            // 
             // label10
             // 
             this.label10.BackColor = System.Drawing.Color.White;
@@ -240,15 +213,6 @@
             this.label10.TabIndex = 48;
             this.label10.Text = "Lista de Clientes:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtindice
-            // 
-            this.txtindice.Location = new System.Drawing.Point(170, 44);
-            this.txtindice.Name = "txtindice";
-            this.txtindice.Size = new System.Drawing.Size(25, 20);
-            this.txtindice.TabIndex = 55;
-            this.txtindice.Text = "-1";
-            this.txtindice.Visible = false;
             // 
             // label9
             // 
@@ -272,7 +236,7 @@
             this.btneliminar.IconColor = System.Drawing.Color.White;
             this.btneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btneliminar.IconSize = 16;
-            this.btneliminar.Location = new System.Drawing.Point(35, 352);
+            this.btneliminar.Location = new System.Drawing.Point(35, 434);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(192, 23);
             this.btneliminar.TabIndex = 45;
@@ -293,7 +257,7 @@
             this.btnlimpiar.IconColor = System.Drawing.Color.White;
             this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlimpiar.IconSize = 18;
-            this.btnlimpiar.Location = new System.Drawing.Point(35, 323);
+            this.btnlimpiar.Location = new System.Drawing.Point(35, 405);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(192, 23);
             this.btnlimpiar.TabIndex = 44;
@@ -314,7 +278,7 @@
             this.btnguardar.IconColor = System.Drawing.Color.White;
             this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnguardar.IconSize = 16;
-            this.btnguardar.Location = new System.Drawing.Point(35, 294);
+            this.btnguardar.Location = new System.Drawing.Point(35, 376);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(192, 23);
             this.btnguardar.TabIndex = 43;
@@ -328,68 +292,53 @@
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(32, 239);
+            this.label8.Location = new System.Drawing.Point(32, 300);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 42;
             this.label8.Text = "Estado:";
             // 
-            // cboestado
+            // cboestadocliente
             // 
-            this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(35, 255);
-            this.cboestado.Name = "cboestado";
-            this.cboestado.Size = new System.Drawing.Size(192, 21);
-            this.cboestado.TabIndex = 41;
+            this.cboestadocliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboestadocliente.FormattingEnabled = true;
+            this.cboestadocliente.Location = new System.Drawing.Point(35, 316);
+            this.cboestadocliente.Name = "cboestadocliente";
+            this.cboestadocliente.Size = new System.Drawing.Size(192, 21);
+            this.cboestadocliente.TabIndex = 41;
+            this.cboestadocliente.SelectedIndexChanged += new System.EventHandler(this.cboestadocliente_SelectedIndexChanged);
             // 
-            // txttelefono
+            // txtcorreocliente
             // 
-            this.txttelefono.Location = new System.Drawing.Point(35, 211);
-            this.txttelefono.Name = "txttelefono";
-            this.txttelefono.Size = new System.Drawing.Size(192, 20);
-            this.txttelefono.TabIndex = 36;
+            this.txtcorreocliente.Location = new System.Drawing.Point(35, 265);
+            this.txtcorreocliente.Name = "txtcorreocliente";
+            this.txtcorreocliente.Size = new System.Drawing.Size(192, 20);
+            this.txtcorreocliente.TabIndex = 34;
             // 
-            // label5
+            // txtdireccioncliente
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(32, 195);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Telefono:";
+            this.txtdireccioncliente.Location = new System.Drawing.Point(35, 118);
+            this.txtdireccioncliente.Multiline = true;
+            this.txtdireccioncliente.Name = "txtdireccioncliente";
+            this.txtdireccioncliente.Size = new System.Drawing.Size(192, 108);
+            this.txtdireccioncliente.TabIndex = 33;
             // 
-            // txtcorreo
+            // txtnombrecliente
             // 
-            this.txtcorreo.Location = new System.Drawing.Point(35, 164);
-            this.txtcorreo.Name = "txtcorreo";
-            this.txtcorreo.Size = new System.Drawing.Size(192, 20);
-            this.txtcorreo.TabIndex = 34;
-            // 
-            // txtnombrecompleto
-            // 
-            this.txtnombrecompleto.Location = new System.Drawing.Point(35, 118);
-            this.txtnombrecompleto.Name = "txtnombrecompleto";
-            this.txtnombrecompleto.Size = new System.Drawing.Size(192, 20);
-            this.txtnombrecompleto.TabIndex = 33;
-            // 
-            // txtdocumento
-            // 
-            this.txtdocumento.Location = new System.Drawing.Point(35, 70);
-            this.txtdocumento.Name = "txtdocumento";
-            this.txtdocumento.Size = new System.Drawing.Size(192, 20);
-            this.txtdocumento.TabIndex = 32;
+            this.txtnombrecliente.Location = new System.Drawing.Point(35, 70);
+            this.txtnombrecliente.Name = "txtnombrecliente";
+            this.txtnombrecliente.Size = new System.Drawing.Size(192, 20);
+            this.txtnombrecliente.TabIndex = 32;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(32, 148);
+            this.label4.Location = new System.Drawing.Point(32, 249);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.Size = new System.Drawing.Size(99, 13);
             this.label4.TabIndex = 31;
-            this.label4.Text = "Correo:";
+            this.label4.Text = "Correo de Contacto";
             // 
             // label3
             // 
@@ -397,9 +346,9 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(32, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 30;
-            this.label3.Text = "Nombre Completo:";
+            this.label3.Text = "Dirección del Cliente";
             // 
             // label2
             // 
@@ -407,9 +356,9 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(32, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 29;
-            this.label2.Text = "Nro Documento:";
+            this.label2.Text = "Nombre del Cliente";
             // 
             // label1
             // 
@@ -422,37 +371,51 @@
             this.label1.Size = new System.Drawing.Size(261, 491);
             this.label1.TabIndex = 28;
             // 
+            // txtindice
+            // 
+            this.txtindice.Location = new System.Drawing.Point(374, 2);
+            this.txtindice.Name = "txtindice";
+            this.txtindice.Size = new System.Drawing.Size(192, 20);
+            this.txtindice.TabIndex = 55;
+            this.txtindice.Visible = false;
+            // 
+            // txtid
+            // 
+            this.txtid.Location = new System.Drawing.Point(655, 2);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(192, 20);
+            this.txtid.TabIndex = 56;
+            this.txtid.Visible = false;
+            // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 491);
+            this.Controls.Add(this.txtid);
+            this.Controls.Add(this.txtindice);
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.dgvdata);
             this.Controls.Add(this.btnlimpiarbuscador);
             this.Controls.Add(this.txtbusqueda);
             this.Controls.Add(this.cbobusqueda);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.txtid);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtindice);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btneliminar);
             this.Controls.Add(this.btnlimpiar);
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.cboestado);
-            this.Controls.Add(this.txttelefono);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtcorreo);
-            this.Controls.Add(this.txtnombrecompleto);
-            this.Controls.Add(this.txtdocumento);
+            this.Controls.Add(this.cboestadocliente);
+            this.Controls.Add(this.txtcorreocliente);
+            this.Controls.Add(this.txtdireccioncliente);
+            this.Controls.Add(this.txtnombrecliente);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmClientes";
-            this.Text = "frmClientes";
+            this.Text = "Clientes - Transportes Orellana";
             this.Load += new System.EventHandler(this.frmClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).EndInit();
             this.ResumeLayout(false);
@@ -468,31 +431,27 @@
         private System.Windows.Forms.TextBox txtbusqueda;
         private System.Windows.Forms.ComboBox cbobusqueda;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtindice;
         private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton btneliminar;
         private FontAwesome.Sharp.IconButton btnlimpiar;
         private FontAwesome.Sharp.IconButton btnguardar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cboestado;
-        private System.Windows.Forms.TextBox txttelefono;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtcorreo;
-        private System.Windows.Forms.TextBox txtnombrecompleto;
-        private System.Windows.Forms.TextBox txtdocumento;
+        private System.Windows.Forms.ComboBox cboestadocliente;
+        private System.Windows.Forms.TextBox txtcorreocliente;
+        private System.Windows.Forms.TextBox txtdireccioncliente;
+        private System.Windows.Forms.TextBox txtnombrecliente;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCompleto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.TextBox txtindice;
+        private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btnSeleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DireccionCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoCliente;
     }
 }

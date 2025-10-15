@@ -43,7 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_CalculosUtil.cs" />
     <Compile Include="CD_Cliente.cs" />
+    <Compile Include="CD_Estado.cs" />
+    <Compile Include="CD_flete.cs" />
+    <Compile Include="CD_Motorista.cs" />
+    <Compile Include="CD_Transporte.cs" />
+    <Compile Include="CD_UnidadTransporte.cs" />
+    <Compile Include="CD_UtilidadFlete.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
