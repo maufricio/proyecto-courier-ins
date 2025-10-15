@@ -133,6 +133,7 @@ namespace CapaPresentacion
                     MessageBox.Show(mensaje);
                 }
             }
+            CargarMotoristas();
 
 
         }
